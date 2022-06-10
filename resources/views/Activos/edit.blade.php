@@ -12,7 +12,7 @@
                        {!! Form::model($activo, ['route' => ['activos.update', $activo->id],
                          'method' => 'PUT']) !!}
 
-                            @include('activos.partials.form')
+                            @include('activos.partials.formedit')
 
                         {!! Form::close() !!} 
                 </div>

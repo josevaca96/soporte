@@ -13,16 +13,10 @@ class ActivosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $activos = Activo::orderBy('id' ,'ASC')->paginate(50);
+    {      
+        $activos = Activo::orderBy('id' ,'DESC')->paginate(50);
         return view('activos.index' , compact('activos'));
     }
-    public function buscar_activos(Request $req)
-    {
-        $activos = Activo::where("UsuarioAsig","like",$req->texto."%")->take(10)->get();
-        return view('activos.reporte' , compact('activos'));
-    }
-    
     /**
      * Show the form for creating a new resource.
      *
@@ -30,7 +24,9 @@ class ActivosController extends Controller
      */
     public function create()
     {
-        return view('activos.create');
+        $objActivo= new Activo;
+        $codigo=$objActivo->obtener_codigo();
+        return view('activos.create',compact('codigo'));
     }
 
     /**
@@ -41,6 +37,7 @@ class ActivosController extends Controller
      */
     public function store(Request $request)
     {
+        
         $activo = Activo::create($request->all());
             return redirect()->route('activos.index')
             ->with('info',' Activo Guardado con éxito');      

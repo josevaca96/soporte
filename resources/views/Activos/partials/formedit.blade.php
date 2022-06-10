@@ -1,7 +1,7 @@
 <div class="form-group">
     @include('activos.error')
     {{ Form::label('name', 'Codigo') }}
-    {{ Form::text('Codigo',$codigo, ['class' => 'form-control']) }}
+    {{ Form::text('Codigo',null, ['class' => 'form-control', 'disabled' => true]) }}
 </div>
 <div class="form-group">
     {{ Form::label('name', 'Nombre Activo') }}
