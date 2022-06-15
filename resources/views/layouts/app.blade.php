@@ -62,7 +62,6 @@
     </div>
   </header>
   <!-- #header -->
-
   <!--==========================
   About Section
   ============================-->
@@ -128,7 +127,7 @@
   <script src="{{asset('plantilla/lib/wow/wow.min.js')}}"></script>
   <script src="{{asset('plantilla/lib/stickyjs/sticky.js')}}"></script>
   <script src="{{asset('plantilla/lib/easing/easing.js')}}"></script>
-  <!-- Template Specisifc Custom Javascript File -->
+  <!-- for Andreus -->
   <script src="{{asset('plantilla/js/custom.js')}}"></script>
   <script src="{{asset('plantilla/contactform/contactform.js')}}"></script>
     </script>
