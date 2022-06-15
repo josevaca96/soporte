@@ -24,6 +24,14 @@
                 'camara-web' => 'CAMARA WEB',
                 'adaptador' => 'ADAPTADOR',
 
+                'bateria' => 'BATERIA',
+                'switch' => 'SWITCH',
+                'camara_seguridad' => 'CAMARA DE SEGURIDAD',
+                'modem' => 'MODEM',
+                'control_remoto' => 'CONTROL REMOTO',
+                'cloud_key' => 'CLOUD KEY',
+                'pizarra_digital' => 'PIZARRA DIGITAL',
+
                 
                 ],null,['class' => 'form-control']) !!}
 </div>
