@@ -73,9 +73,9 @@
                         <a href="{{ url('/home') }}" class="btn-get-started">Home</a>
                     @else
                         <a href="{{ url('/login') }}" class="btn-get-started">Ingresar</a>
-                        @if (Route::has('register'))
+                        <!-- @if (Route::has('register'))
                             <a href="{{ url('/register') }}" class="btn-get-started">Registrarse</a>
-                        @endif
+                        @endif -->
                     @endauth
                 </div>
             @endif
