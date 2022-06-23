@@ -23,6 +23,8 @@ Route::get('/', function () {
 });
 Route::get('/home', 'ActivosController@index')->name('home');
     
+Route::get('/reporte_activos', 'ActivosController@report_act')->name('reporte_activos');
+Route::get('/reporte_activos_filter', 'ActivosController@report_filter')->name('reporte_activos_filter');
 
 Auth::routes();
 Route::middleware(['auth'])->group(function(){ 
