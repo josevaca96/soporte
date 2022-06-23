@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Activo;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\ActivoRequest;
 class ActivosController extends Controller
 {
     /**
@@ -15,7 +16,18 @@ class ActivosController extends Controller
     public function index()
     {      
         $activos = Activo::orderBy('id' ,'DESC')->paginate(50);
+        // $ = Activo::orderBy('id' ,'DESC')->paginate(50);
         return view('activos.index' , compact('activos'));
+    }
+    public function report_act()
+    {      
+        $activos = Activo::orderBy('id' ,'DESC')->get();
+        return view('activos.reporte' , compact('activos'));
+    }
+    public function report_filter()
+    {      
+        $activos = Activo::orderBy('id' ,'DESC')->paginate(50);
+        return view('activos.reporteall' , compact('activos'));
     }
     /**
      * Show the form for creating a new resource.
@@ -35,9 +47,8 @@ class ActivosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ActivoRequest $request)
     {
-        
         $activo = Activo::create($request->all());
             return redirect()->route('activos.index')
             ->with('info',' Activo Guardado con éxito');      

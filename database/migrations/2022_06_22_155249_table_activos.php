@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearTablaActivos extends Migration
+class TableActivos extends Migration
 {
     /**
      * Run the migrations.
@@ -26,6 +26,9 @@ class CrearTablaActivos extends Migration
             $table->text('Observaciones')->nullable();
             $table->string ('CapRecursos',60)->nullable();
             $table->string ('Empresa',60)->nullable();
+
+            $table->bigInteger('IdCategoria')->nullable();
+            $table->foreign('IdCategoria')->references('id')->on('categorias');
             $table->softDeletes();
         });
     }

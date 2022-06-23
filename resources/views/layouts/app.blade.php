@@ -1,71 +1,90 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Grupo Paz</title>
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-      <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <!-- bootstrap -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.css">
-    <!-- Libraries CSS Files -->
-  <link href="{{asset('plantilla/lib/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
-  <link href="{{asset('plantilla/lib/animate-css/animate.min.css')}}" rel="stylesheet">
-  <link href="{{asset('plantilla/css/style.css')}}" rel="stylesheet">
-    <link href="{{ asset('plantilla/img/logo2.png') }}" rel="shortcut icon">
-</head>
+    @include('section.head')
 <body>
     <div id="app">
-  <!--==========================
-  Sección de encabezado
-  ============================-->
-  <header id="header">
-    <div class="container">
-      <div id="logo" class="pull-left">
-        <a href="/"><img src="img/logo.png" alt="" title="" /></img></a>
-        <!-- Descomenta abajo si prefieres usar una imagen de texto -->
-        <!--<h1><a href="#hero">Encabezado 1</a></h1>-->
-      </div>
-      <nav id="nav-menu-container">
-        <ul class="nav-menu">
-            @if(Auth::check())
-            <li class="menu-active"><a href="/">Inicio</a></li>
-            <li><a href="{{ route('activos.index') }}">Activos</a></li>
-            @endif
-            @guest
-                @if (Route::has('register'))
-                    <!-- <li class="menu-active"><a href="{{ route('register') }}">Registrarse</a></li> -->
+        <header id="header">
+            <div class="container">
+                <div id="logo" class="pull-left">
+                    <a href="/"><img src="{{ asset('img/logo.png') }}" alt="" title="" /></img></a>
+                </div>
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        @if(Auth::check())
+                            <li class="menu-active"><a href="/">Inicio</a></li>
+                            <li><a href="{{ route('activos.index') }}">Activos</a></li>
+                        @endif
+                        @guest
+                            @if (Route::has('register'))
+                                <!-- <li class="menu-active"><a href="{{ route('register') }}">Registrarse</a></li> -->
+                            @endif
+                            @else
+                                <li class="menu-has-children"><a>{{ Auth::user()->name }}</a>
+                                    <ul>
+                                        <li><a  href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                            Salir
+                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
+                                        </li>
+                                    </ul>    
+                                </li>
+                        @endguest
+                    </ul>
+                </nav>
+            </div>
+        </header>    
+        <main class="py-4">
+                @if(session('info'))
+                    <div class="container-fluid" id="msj">
+                        <div class="row justify-content-center">
+                            <div class="col-md-12">
+                                <div class="alert alert-success">
+                                    {{session('info')}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endif
-                @else
-                <li class="menu-has-children"><a>{{ Auth::user()->name }}</a>
-                    <ul>
-                        <li><a  href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                                Salir
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </li>
-                    </ul>    
-                </li>
-            @endguest
-        </ul>
-      </nav>
+                @yield('content')
+        </main>    
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
     </div>
-  </header>
-  <!-- #header -->
-  <!--==========================
-  About Section
-  ============================-->
-    <!-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    @include('section.script')    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Grupo Paz
@@ -113,24 +132,3 @@
             </div>
         </nav> -->
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
-    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-         <!-- Required JavaScript Libraries -->
-  <script src="{{asset('plantilla/lib/jquery/jquery.min.js')}}"></script>
-  <script src="{{asset('plantilla/lib/bootstrap/js/bootstrap.min.js')}}"></script>
-  <script src="{{asset('plantilla/lib/superfish/hoverIntent.js')}}"></script>
-  <script src="{{asset('plantilla/lib/superfish/superfish.min.js')}}"></script>
-  <script src="{{asset('plantilla/lib/morphext/morphext.min.js')}}"></script>
-  <script src="{{asset('plantilla/lib/wow/wow.min.js')}}"></script>
-  <script src="{{asset('plantilla/lib/stickyjs/sticky.js')}}"></script>
-  <script src="{{asset('plantilla/lib/easing/easing.js')}}"></script>
-  <!-- for Andreus -->
-  <script src="{{asset('plantilla/js/custom.js')}}"></script>
-  <script src="{{asset('plantilla/contactform/contactform.js')}}"></script>
-    </script>
-    
-</body>
-</html>

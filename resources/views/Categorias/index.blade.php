@@ -1,7 +1,7 @@
  @extends('layouts.app')
  @section('content')
 <div class="container-fluid shadow-sm p-3 mb-5 bg-white rounded">
-<h1 class="text-info "><strong>Activos</strong></h1> 
+<h1 class="text-info "><strong>Categorias</strong></h1> 
     <div class="row">
         <div class="col-md-12">
             <div class="">
