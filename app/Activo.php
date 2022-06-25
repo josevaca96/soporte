@@ -11,16 +11,12 @@ class Activo extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = [
         'Codigo', 
-        'NombreActivo',
+        'IdTAct',
         'Marca',
         'Modelo',
         'NroSerial',
-        'Oficina',
         'Condicion',
-        'UsuarioAsig',
         'Observaciones',
-        'CapRecursos',
-        'Empresa',
     ];
     public $timestamps =false;
 

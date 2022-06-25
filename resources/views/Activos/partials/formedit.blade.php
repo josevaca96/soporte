@@ -38,6 +38,20 @@
                 'control_remoto' => 'CONTROL REMOTO',
                 'cloud_key' => 'CLOUD KEY',
                 'pizarra_digital' => 'PIZARRA DIGITAL',
+                'toner' => 'TONER',
+                'poe' => 'POE',
+                'transformador-telefono' => 'TRANSFORMADOR DE TELEFONÍA',
+                'router' => 'ROUTER',
+                'disco-solido' => 'DISCO SOLIDO',
+                'disco-duro' => 'DISCO DURO',
+                'papel' => 'PAPEL',
+                'soporte-tv' => 'SOPORTE TV',
+                'usb-vga' => 'USB-VGA',
+                'cargador-bateria' => 'GARGADOR DE BATERIA',
+                'bluetooth' => 'BLUETOOTH',
+                'convertidor-pop' => 'CONVERTIDOR POP',
+                'ups' => 'UPS',
+                'Fuente-alimentacion' => 'FUENTE DE ALIMENTACIÓN',
 
                 ],null,['class' => 'form-control']) !!}
             </div>
