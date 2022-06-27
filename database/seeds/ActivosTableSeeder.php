@@ -46,36 +46,35 @@ class ActivosTableSeeder extends Seeder
    
     //Oficinas
         Oficina::create([
-            'Direccion'    => 'Las Brisas',
-            'Descripcion'   => '..',
+            'Direccion'    => 'Las Brisas Cuarto Anillo av/Banzer',
+            'Descripcion'   => 'Las Brisas',
         ]);
         Oficina::create([
-            'Direccion'    => 'Central',
-            'Descripcion'   => 'Edificio primer anillo',
+            'Direccion'    => 'Primer Anillo Av/Cañoto',
+            'Descripcion'   => 'Edificio Celina Central',
         ]);
     //Empresa
-        // Empresa::create([
-        //     'Nombre'    => 'Galileo',
-        //     'IdDpto'   => 'Empresa dedicada al Analisis de Datos',
-        // ]);    
-        // Empresa::create([
-        //     'Nombre'    => 'Celina',
-        //     'IdDpto'   => 'Rubro de ventas de Terrenos',
-        // ]);   
-        // Empresa::create([
-        //     'Nombre'    => 'Pacucito',
-        //     'IdDpto'   => 'Venta de Producto Apicula',
-        // ]);
-        // Empresa::create([
-        //     'Nombre'    => 'Tienda Celina',
-        //     'IdDpto'   => 'Venta de Electrodomésticos y producto del Hogar',
-        // ]);
-        // Empresa::create([
-        //     'Nombre'    => 'Brisas de Paz',
-        //     'IdDpto'   => 'Venta de terrenos Parque Cementerio',
-        // ]);    
+        Empresa::create([
+            'Nombre'    => 'Galileo',
+            'Descripcion'   => 'Empresa dedicada al Analisis de Datos',
+        ]);    
+        Empresa::create([
+            'Nombre'    => 'Celina',
+            'Descripcion'   => 'Rubro de ventas de Terrenos',
+        ]);   
+        Empresa::create([
+            'Nombre'    => 'Pacucito',
+            'Descripcion'   => 'Venta de Producto Apicula',
+        ]);
+        Empresa::create([
+            'Nombre'    => 'Tienda Celina',
+            'Descripcion'   => 'Venta de Electrodomésticos y producto del Hogar',
+        ]);
+        Empresa::create([
+            'Nombre'    => 'Brisas de Paz',
+            'Descripcion'   => 'Venta de terrenos Parque Cementerio',
+        ]);    
     //Tipo Activo
-    
         TipoActivo::create([
             'Nombre'    => 'Laptop',
             'Descripcion'   => '..',
