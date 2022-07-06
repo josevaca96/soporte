@@ -12,7 +12,10 @@
     <link href="{{asset('plantilla/css/style.css')}}" rel="stylesheet">
     <link href="{{ asset('plantilla/img/logo2.png') }}" rel="shortcut icon">
     <link rel="stylesheet" href="{{ asset('css/frm-activos.css') }}">
+    @livewireStyles
     <!-- datatables -->
-    <link rel="stylesheet" href="cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
+    <script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript"></script>
+    
     
 </head>

@@ -10,7 +10,7 @@ class Empresa extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = [
         'Nombre',
-        'IdDpto',
+        'Descripcion',
     ];
     public $timestamps =false;
 }

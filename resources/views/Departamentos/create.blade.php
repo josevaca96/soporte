@@ -7,8 +7,8 @@
             <div class="card shadow-lg p-3 mb-5 bg-body rounded">
                 <div class="px-5">
                 @include('activos.error')
-                       {!! Form::open( ['route' => 'activos.store']) !!}
-                            @include('activos.partials.form')
+                       {!! Form::open( ['route' => 'departamentos.store']) !!}
+                            @include('departamentos.partials.form')
                         {!! Form::close() !!} 
                 </div>
             </div>

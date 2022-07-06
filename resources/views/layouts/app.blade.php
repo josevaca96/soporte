@@ -11,8 +11,14 @@
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
                         @if(Auth::check())
-                            <li class="menu-active"><a href="/">Inicio</a></li>
+                            <li class=""><a href="/">Inicio</a></li>
                             <li><a href="{{ route('activos.index') }}">Activos</a></li>
+                            <li><a href="{{ route('tipo_activos.index') }}">Tipo-Activos</a></li>
+                            <li><a href="{{ route('empresas.index') }}">Empresas</a></li>
+                            <li><a href="{{ route('oficinas.index') }}">Oficina</a></li>
+                            <li><a href="{{ route('departamentos.index') }}">Departamento</a></li>
+                            <li><a href="{{ route('asignaciones.index') }}">Asignaciones</a></li>
+                            
                         @endif
                         @guest
                             @if (Route::has('register'))
@@ -37,7 +43,7 @@
                 </nav>
             </div>
         </header>    
-        <main class="py-4">
+        <main class="">
                 @if(session('info'))
                     <div class="container-fluid" id="msj">
                         <div class="row justify-content-center">

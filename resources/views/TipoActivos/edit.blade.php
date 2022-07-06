@@ -9,10 +9,10 @@
 
                 <div class="px-5">
                 @include('activos.error')
-                       {!! Form::model($activo, ['route' => ['activos.update', $activo->id],
+                       {!! Form::model($tipo_activo, ['route' => ['tipo_activos.update', $tipo_activo->id],
                          'method' => 'PUT']) !!}
 
-                            @include('activos.partials.formedit')
+                            @include('TipoActivos.partials.form')
 
                         {!! Form::close() !!} 
                 </div>

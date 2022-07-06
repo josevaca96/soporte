@@ -59,7 +59,7 @@ class TablaBase extends Migration
             $table->string ('UsuarioAsig',60)->nullable();
             $table->string ('CapRecursos',60)->nullable();
             $table->softDeletes();
-            $table->primary(['IdE','IdO','IdD']);
+            $table->primary(['IdE','IdO','IdD','IdAct']);
             $table->foreign('IdAct')->references('id')->on('activos');
             $table->foreign('IdE')->references('id')->on('empresas');
             $table->foreign('IdO')->references('id')->on('oficinas');

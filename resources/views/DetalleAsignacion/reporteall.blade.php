@@ -1,33 +1,59 @@
- @extends('layouts.app')
- @section('content')
-<div class="container-fluid shadow-sm p-3 mb-5 bg-white rounded">
-<h1 class="text-info "><strong>Categorias</strong></h1> 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="">
-                <a href="{{route('activos.create')}}" 
-                class="btn btn-sm btn-primary col-lg-2">
-                           Crear 
-                            
-                            </a>       
-                </div>
-                <div class="pt-1">
-                <a href="{{route('reporte_activos')}}" 
-                class="btn btn-sm btn-primary col-lg-2">
-                            
-                           reporte
-                            </a>       
-                </div>
-                <div class="pt-1">
-                <a href="{{route('reporte_activos_filter')}}" 
-                class="btn btn-sm btn-primary col-lg-2">
-                            
-                           filtro
-                            </a>       
-                </div>
-                
+@extends('layouts.app')
+@section('content')
+<div class="panel-body shadow p-3 mb-5 bg-white rounded">
+        <!-- section filtro -->
+        <div class="row">
+            {!! Form::open( ['route' => 'activos.store']) !!}
+                <div class="col-md-12 col-lg-2 form-group pr-2">
+                    {{ Form::label('name', 'TipoActivo') }}
+                    {!! Form::select('NombreActivo', [
+                    'laptop' => 'LAPTOP',
+                    'cargador' => 'CARGADOR',
+                    'teclado' => 'TECLADO',
+                    'mouse' => 'MOUSE',
+                    'pc-escritorio' => 'PC-ESCRITORIO',
+                    'impresora' => 'IMPRESORA',
+                    'monitor' => 'MONITOR',
+                    'tv-plasma' => 'TV-PLASMA',
+                    'proyector' => 'PROYECTOR',
+                    'parlantes' => 'PARLANTES',
+                    'scanner' => 'SCANNER',
+                    'telefono' => 'TELEFONO',
+                    'auriculares' => 'AURICULARES',
+                    'etiquetadora' => 'ETIQUETADORA',
+                    'usb' => 'USB',
+                    'camara-web' => 'CAMARA WEB',
+                    'adaptador' => 'ADAPTADOR',
+                    'bateria' => 'BATERIA',
+                    'switch' => 'SWITCH',
+                    'camara_seguridad' => 'CAMARA DE SEGURIDAD',
+                    'modem' => 'MODEM',
+                    'control_remoto' => 'CONTROL REMOTO',
+                    'cloud_key' => 'CLOUD KEY',
+                    'pizarra_digital' => 'PIZARRA DIGITAL',
 
-                <div class="panel-body shadow p-3 mb-5 bg-white rounded">
+                    ],null,['class' => 'form-control']) !!}
+                </div>
+                <div class="col-md-12 col-lg-2 form-group pr-2">
+                    {{ Form::label('name', 'Empresa') }}
+                    {!! Form::select('Empresa', [
+                        'celina' => 'CELINA',
+                        'pacucito' => 'PACUCITO',
+                        'galileo' => 'GALILEO',
+                        'ticketeg' => 'TICKETEG',
+                        'multipago' => 'MULTIPAGO'
+                        
+                    ],null,['class' => 'form-control']) !!}
+                </div>
+                <div class="col-md-12 col-lg-3 form-group pr-1"> 
+                    {{ Form::label('name', 'Nº Serial') }}
+                    {{ Form::text('Codigo',null, ['class' => 'form-control']) }}
+                </div>
+                <div class="col-md-12 col-lg-2  form-group pt-4 mt-2" >
+                    {{ Form::submit('Guardar', ['class' => 'btn btn-outline-success btn_activo_save']) }}
+                </div>  
+            {!! Form::close() !!}
+        </div>
                 <div class="table-responsive-lg">
                     <table id="activos" class="table table-striped table-hover ">
                         <thead>
@@ -105,13 +131,4 @@
                     <div class="d-flex flex-row-reverse px-3">
                         {{$activos->render()}}
                     </div>
-                    
-                </div>
-                </div>
-            </div>
-        </div>
-</div>
-@endsection 
-
-
-
+@endsection

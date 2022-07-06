@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Activo;
+use App\TipoActivo;
+use App\Asignacion;
+
+
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\ActivoRequest;
 class ActivosController extends Controller
@@ -14,9 +18,8 @@ class ActivosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {      
-        $activos = Activo::orderBy('id' ,'DESC')->paginate(50);
-        // $ = Activo::orderBy('id' ,'DESC')->paginate(50);
+    {         
+        $activos = Activo::orderBy('id' ,'DESC')->paginate(50);        
         return view('activos.index' , compact('activos'));
     }
     public function report_act()
@@ -36,9 +39,11 @@ class ActivosController extends Controller
      */
     public function create()
     {
-        $objActivo= new Activo;
-        $codigo=$objActivo->obtener_codigo();
-        return view('activos.create',compact('codigo'));
+        // $objActivo= new Activo;
+        // $codigo=$objActivo->obtener_codigo();
+        // $tipo_activos = TipoActivo::all()->pluck('Nombre','id');
+        // return view('activos.create',compact('codigo','tipo_activos'));
+        return view('activos.create');
     }
 
     /**
@@ -47,11 +52,31 @@ class ActivosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ActivoRequest $request)
+    public function store(Request $request)
     {
-        $activo = Activo::create($request->all());
+   
+        if($request->IdE=='' && $request->IdO=='' && $request->IdD=='' && $request->UsuarioAsig==''){
+            $activo = Activo::create($request->all());
             return redirect()->route('activos.index')
-            ->with('info',' Activo Guardado con éxito');      
+            ->with('info',' Activo Guardado con éxito');
+        }
+        else{
+            $activo = Activo::create($request->all());
+            $llenado_detalle =new Asignacion;
+
+            $llenado_detalle->IdAct=$activo->id;
+            $llenado_detalle->IdO=$request->IdO;
+            $llenado_detalle->IdE=$request->IdE;
+            $llenado_detalle->IdD=$request->IdD;
+            $llenado_detalle->fecha_i=$request->fecha_i;
+            $llenado_detalle->fecha_f=$request->fecha_f;
+            $llenado_detalle->UsuarioAsig=$request->UsuarioAsig;
+            $llenado_detalle->CapRecursos=$request->CapRecursos;
+            $llenado_detalle->save();
+            return redirect()->route('activos.index')
+            ->with('info',' Activo Guardado con éxito');
+        }
+              
     }
 
     /**
@@ -74,7 +99,8 @@ class ActivosController extends Controller
      */
     public function edit(Activo $activo)
     {
-        return view('activos.edit', compact('activo'));
+        $tipo_activos = TipoActivo::all()->pluck('Nombre','id');
+        return view('activos.edit', compact('activo','tipo_activos'));
     }
     
     

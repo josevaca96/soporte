@@ -10,6 +10,8 @@ class Oficina extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = [
         'Direccion',
+        'Descripcion',
+
     ];
     public $timestamps =false;
 }

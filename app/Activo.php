@@ -4,11 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use\App\Activo;
+use\App\TipoActivo;
+
 class Activo extends Model
 {
     use SoftDeletes; 
     protected $dates = ['deleted_at'];
+    
+    public function tipo_activo()
+    {
+      return $this->belongsTo(TipoActivo::class, 'IdTAct');
+    }
     protected $fillable = [
         'Codigo', 
         'IdTAct',
@@ -19,6 +25,7 @@ class Activo extends Model
         'Observaciones',
     ];
     public $timestamps =false;
+
 
     public function obtener_codigo(){
         $ultimo = Activo::select('Codigo')->orderBy('id','desc')->take(1)->get();

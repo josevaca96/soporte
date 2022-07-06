@@ -63,7 +63,13 @@ class RouteServiceProvider extends ServiceProvider
              ->group( function (){
                 require base_path('routes/web.php');
                 require base_path('routes/activos.php');
-                require base_path('routes/categorias.php');
+                require base_path('routes/tipo_activos.php');
+                require base_path('routes/empresas.php');
+                require base_path('routes/oficinas.php');
+                require base_path('routes/departamentos.php');
+                require base_path('routes/asignaciones.php');
+                require base_path('routes/reportes.php');
+                
              });
     }
 
