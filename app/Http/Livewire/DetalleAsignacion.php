@@ -59,9 +59,6 @@ class DetalleAsignacion extends Component
         }
         
     }
-    public function punto_inicio(){
-        return view('empresas.index'); 
-    }
     public function Cap_act($id_Acct){
       return $this->id_activo=$id_Acct;
     }

@@ -25,11 +25,13 @@ class Activo extends Model
         'Observaciones',
     ];
     public $timestamps =false;
-
+        
 
     public function obtener_codigo(){
         $ultimo = Activo::select('Codigo')->orderBy('id','desc')->take(1)->get();
-           
+         if($ultimo->isEmpty()){
+            return 'IT-ACT00001';
+         }  
         foreach($ultimo as $date){
                $str=  $date->Codigo;
                return $this->formatear_str($str);    

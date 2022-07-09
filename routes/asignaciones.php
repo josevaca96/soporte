@@ -16,7 +16,7 @@ Route::get('asignaciones' , 'DetalleAsignacion@index')->name('asignaciones.index
 Route::get('asignaciones/create' , 'DetalleAsignacion@create')->name('asignaciones.create');
    // ->middleware('can:activos.create');
 
-Route::put('asignaciones/{asignacion}' , 'DetalleAsignacion@update')->name('asignaciones.update');
+Route::put('asignaciones/{IdE}/{IdO}/{IdD}/{IdAct}' , 'DetalleAsignacion@update')->name('asignaciones.update');
    // ->middleware('can:activos.edit');
 
 Route::get('asignaciones/{IdE}/{IdO}/{IdD}/{IdAct}' , 'DetalleAsignacion@show')->name('asignaciones.show');

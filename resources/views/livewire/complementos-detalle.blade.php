@@ -69,8 +69,9 @@
     </div>
     <div class="col-lg-4 col-sm-12">
         <div class="form-group">
+        <!-- ['class' => 'form-control','readonly'] -->
             {{ Form::label('name', 'Codigo') }}
-            {{ Form::text('Codigo',$codigo, ['class' => 'form-control','readonly']) }}
+            {{ Form::text('Codigo',$codigo, ['class' => 'form-control']) }}
         </div>
     </div>
     <div class="col-lg-4 col-sm-12">

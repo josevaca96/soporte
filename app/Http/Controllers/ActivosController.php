@@ -18,7 +18,8 @@ class ActivosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {         
+    {
+                 
         $activos = Activo::orderBy('id' ,'DESC')->paginate(50);        
         return view('activos.index' , compact('activos'));
     }
@@ -52,13 +53,35 @@ class ActivosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function validar_activo($activo)
+    { 
+        if(
+            Validator::make($activo->toArray(), [
+                'Codigo' => 'required|unique:activos',
+                'Condicion' => 'required',
+            ],
+            [
+                'Codigo.required' => 'El Campo Codigo es requerido',
+                'Codigo.unique' => 'El Campo Codigo ya existe',
+                'Condicion.required' => 'El Campo Condicion es requerido',
+            ])->validate()
+        )
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }      
     public function store(Request $request)
-    {
-   
+    {        
         if($request->IdE=='' && $request->IdO=='' && $request->IdD=='' && $request->UsuarioAsig==''){
+            if($this->validar_activo($request))
+            {
             $activo = Activo::create($request->all());
             return redirect()->route('activos.index')
             ->with('info',' Activo Guardado con éxito');
+            }
         }
         else{
             $activo = Activo::create($request->all());
@@ -72,9 +95,27 @@ class ActivosController extends Controller
             $llenado_detalle->fecha_f=$request->fecha_f;
             $llenado_detalle->UsuarioAsig=$request->UsuarioAsig;
             $llenado_detalle->CapRecursos=$request->CapRecursos;
-            $llenado_detalle->save();
-            return redirect()->route('activos.index')
-            ->with('info',' Activo Guardado con éxito');
+            if(Validator::make($llenado_detalle->toArray(), [
+                'IdO' => 'required',
+                'IdE' => 'required',
+                'IdD' => 'required',
+                'IdAct' => 'required',
+                'fecha_i' => 'required',
+
+                ],
+                [
+                'IdO.required' => 'El Campo Oficina es requerido',
+                'IdE.required' => 'El Campo Empresa es requerido',
+                'IdD.required' => 'El Campo Departamento es requerido',
+                'IdAct.required' => 'El Campo Activo es requerido',
+                'fecha_i.required' => 'El Campo Fecha Inicial es requerido',
+                ])->validate()
+            )
+            {
+                $llenado_detalle->save();
+                return redirect()->route('activos.index')
+                ->with('info',' Activo Guardado con éxito');
+            } 
         }
               
     }

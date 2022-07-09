@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Http\Requests\OficinaRequest;
 use App\Oficina;
 use Illuminate\Support\Facades\Validator;
@@ -16,11 +17,17 @@ class OficinasController extends Controller
      */
     public function index()
     {
-        $oficinas = DB::table('oficinas')
+        try{
+            $oficinas = DB::table('oficinas')
             ->where('deleted_at', '=', null)
             ->orderBy('id' ,'DESC')
             ->paginate(30);
-        return view('oficinas.index' , compact('oficinas'));
+            return view('oficinas.index' , compact('oficinas'));
+        }catch(\Exception $e){
+          Log::debug($e ->getMessage());
+          return redirect('/error');
+        }
+        
     }
 
     /**
@@ -75,7 +82,7 @@ class OficinasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Oficina $oficina)
+    public function update()
     {
         //validando los campos del formulario
         Validator::make($request->all(), [

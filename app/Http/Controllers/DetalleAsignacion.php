@@ -128,9 +128,20 @@ class DetalleAsignacion extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Asignacion $asignacion)
+
+      
+      
+      
+    
+    public function edit($IdE,$IdO,$IdD,$IdAct)
     {
-        return view('DetalleAsignacion.edit', compact('asignacion'));
+        $detalle_asginacions =Asignacion::where('IdE','=',$IdE)
+            ->where('IdO','=',$IdO)
+            ->where('IdD','=',$IdD)
+            ->where('IdAct','=',$IdAct)
+            ->get();
+            // Sdd($detalle_asginacions);        
+        return view('DetalleAsignacion.edit', compact('detalle_asginacions'));
     }
 
     /**
@@ -142,7 +153,7 @@ class DetalleAsignacion extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

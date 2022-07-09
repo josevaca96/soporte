@@ -1,6 +1,6 @@
 <div>
-    @include('activos.error')
-    {!! Form::open( ['route' => 'asignaciones.store']) !!}
+    <!-- @include('activos.error')
+    {!! Form::open( ['route' => 'asignaciones.store']) !!} -->
     <div class="text-center pt-2">
         <h1>Formulario de Asignación</h1>
     </div>
@@ -9,7 +9,7 @@
             <div class="row p-3">
                 <div class="col-6 p-2">
                     {{ Form::label('activo', 'Activo') }}
-                    {{ Form::text('IdAct',$id_activo, ['class' => 'form-control','readonly']) }}
+                    {{ Form::text('IdAct',null, ['class' => 'form-control','readonly']) }}
                 </div>
                 <div class="col-6 p-2">
                     {{ Form::label('empresa', 'Empresa') }}
@@ -55,7 +55,7 @@
                 </div>
             </div>
         </div>
-        {!! Form::close() !!}
+        <!-- {!! Form::close() !!} -->
         <!-- table -->
         <div class="card col-6 shadow p-3 mb-5 bg-body rounded " >
             <div class="row">
