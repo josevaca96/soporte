@@ -43,7 +43,7 @@
                 </nav>
             </div>
         </header>    
-        <main class="">
+        <main class="p-5">
                 @if(session('info'))
                     <div class="container-fluid" id="msj">
                         <div class="row justify-content-center">

@@ -11,10 +11,9 @@ $(document).ready(function() {
 });
 // devanecer alertas
 
-// dataTable
-$(document).ready( function () {
-    $('#activos_search').DataTable();
-} );
-var tabla =document.querySelector("#activos_asig");
-var dataTable= new DataTable(tabla);
+ function modal_show(){
+    $('#').modal('show');
+}
+
+
 

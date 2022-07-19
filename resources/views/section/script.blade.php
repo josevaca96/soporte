@@ -13,5 +13,3 @@
 <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
 
 @livewireScripts
-<!-- datatables -->
-<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>

@@ -13,9 +13,4 @@
     <link href="{{ asset('plantilla/img/logo2.png') }}" rel="shortcut icon">
     <link rel="stylesheet" href="{{ asset('css/frm-activos.css') }}">
     @livewireStyles
-    <!-- datatables -->
-    <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
-    <script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript"></script>
-    
-    
 </head>

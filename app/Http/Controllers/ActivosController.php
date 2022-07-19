@@ -9,6 +9,7 @@ use App\Asignacion;
 
 
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ActivoRequest;
 class ActivosController extends Controller
 {
@@ -32,6 +33,17 @@ class ActivosController extends Controller
     {      
         $activos = Activo::orderBy('id' ,'DESC')->paginate(50);
         return view('activos.reporteall' , compact('activos'));
+    }
+    public function busqueda()
+    {   
+        $activos =DB::table('activos')
+        ->join('tipo_activos', 'activos.IdTAct', '=', 'tipo_activos.id')
+        ->select('activos.*',
+                'tipo_activos.Nombre as activo'
+                )
+        ->orderBy('id', 'asc')
+        ->get();
+        return view('activos.busqueda' , compact('activos'));
     }
     /**
      * Show the form for creating a new resource.

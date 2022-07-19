@@ -41,7 +41,7 @@ class DetalleAsignacion extends Controller
         ->orderBy('IdE' ,'ASC')
         ->paginate(30);
         
-        return view('DetalleAsignacion.index' , compact('detalle_asginacions'));
+        return view('DetalleAsignacion.index2' , compact('detalle_asginacions'));
     }
 
     /**
