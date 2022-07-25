@@ -11,9 +11,11 @@ $(document).ready(function() {
 });
 // devanecer alertas
 
- function modal_show(){
-    $('#').modal('show');
-}
-
+ window.onload = function(){
+    Livewire.on('dataSend',() =>{
+        $('#exampleModal').modal('show','static');
+    });
+ }
+//  $('#myModal').modal({backdrop: 'static', keyboard: false})
 
 

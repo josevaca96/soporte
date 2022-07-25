@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Asignacion;
+use App\Oficina;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class DetalleAsignacion extends Controller
 {
@@ -41,7 +44,7 @@ class DetalleAsignacion extends Controller
         ->orderBy('IdE' ,'ASC')
         ->paginate(30);
         
-        return view('DetalleAsignacion.index2' , compact('detalle_asginacions'));
+        return view('DetalleAsignacion.index' , compact('detalle_asginacions'));
     }
 
     /**
@@ -128,20 +131,15 @@ class DetalleAsignacion extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-      
-      
-      
-    
     public function edit($IdE,$IdO,$IdD,$IdAct)
     {
-        $detalle_asginacions =Asignacion::where('IdE','=',$IdE)
+        $detalle_asignacions =Asignacion::where('IdE','=',$IdE)
             ->where('IdO','=',$IdO)
             ->where('IdD','=',$IdD)
             ->where('IdAct','=',$IdAct)
             ->get();
-            // Sdd($detalle_asginacions);        
-        return view('DetalleAsignacion.edit', compact('detalle_asginacions'));
+            $transform=$detalle_asignacions[0];        
+        return view('DetalleAsignacion.edit', compact('detalle_asignacions','transform'));
     }
 
     /**
@@ -162,14 +160,25 @@ class DetalleAsignacion extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function destroy($IdE,$IdO,$IdD,$IdAct)
     {
+        $fecha = $this->obtener_fecha_actual();
         $asignacion =DB::table('detalle_asignacions')
-            ->where('IdE' ,'=' ,$IdE)
-            ->where('IdO' ,'=' ,$IdO)
-            ->where('IdD' ,'=' ,$IdD)
-            ->where('IdAct' ,'=' ,$IdAct)
-            ->delete();
+        ->where('IdE' ,'=' ,$IdE)
+        ->where('IdO' ,'=' ,$IdO)
+        ->where('IdD' ,'=' ,$IdD)
+        ->where('IdAct' ,'=' ,$IdAct)
+        ->update(['deleted_at' => $fecha]);
         return back()->with('info', 'eliminado correctamente');
+
+        
+    }
+    public function obtener_fecha_actual(){
+        $fecha_actual = new Carbon();
+        date_default_timezone_set('America/La_Paz');
+        $time = strtotime($fecha_actual);
+        $fechaLocal = date("Y-m-d H:i:s", $time);
+        return $fechaLocal;
     }
 }

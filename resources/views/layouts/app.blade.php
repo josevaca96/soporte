@@ -11,14 +11,39 @@
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
                         @if(Auth::check())
-                            <li class=""><a href="/">Inicio</a></li>
-                            <li><a href="{{ route('activos.index') }}">Activos</a></li>
-                            <li><a href="{{ route('tipo_activos.index') }}">Tipo-Activos</a></li>
-                            <li><a href="{{ route('empresas.index') }}">Empresas</a></li>
-                            <li><a href="{{ route('oficinas.index') }}">Oficina</a></li>
-                            <li><a href="{{ route('departamentos.index') }}">Departamento</a></li>
-                            <li><a href="{{ route('asignaciones.index') }}">Asignaciones</a></li>
-                            
+                            @can('activos.index')
+                                <li class=""><a href="/">Inicio</a></li>
+                            @endcan
+                            @can('activos.index')
+                                <li><a href="{{ route('activos.index') }}">Activos</a></li>
+                            @endcan
+                            @can('tipo_activos.index')
+                                <li><a href="{{ route('tipo_activos.index') }}">Tipo-Activos</a></li>
+                            @endcan
+                            @can('empresas.index')
+                                <li><a href="{{ route('empresas.index') }}">Empresas</a></li>
+                            @endcan
+                            @can('oficinas.index')
+                                <li><a href="{{ route('oficinas.index') }}">Oficina</a></li>
+                            @endcan
+                            @can('departamentos.index')
+                                <li><a href="{{ route('departamentos.index') }}">Departamento</a></li>
+                            @endcan
+                            @can('asignaciones.index')
+                                <li><a href="{{ route('asignaciones.index') }}">Asignaciones</a></li>
+                            @endcan
+                            @can('asignaciones.index')
+                            <li class="menu-has-children"><a>Seguridad</a>
+                                    <ul>
+                                    @can('asignaciones.index')
+                                        <li><a  href="{{ route('roles.index') }}">Roles</a></li>
+                                    @endcan
+                                    @can('asignaciones.index')
+                                        <li><a  href="{{ route('users.index') }}">Usuarios</a></li>
+                                    @endcan
+                                    </ul>    
+                            </li>
+                            @endcan
                         @endif
                         @guest
                             @if (Route::has('register'))

@@ -12,8 +12,19 @@ use Illuminate\Support\Facades\DB;
 
 class DetalleAsignacion extends Component
 {
+    
     public $search = '';
-    public $id_activo = '';
+    public $id_act = '';
+    public $codigo = '';
+    public $activo = '';
+    public $serial = '';
+    public $modelo = '';
+    public $obj_asignacion = '';
+    
+    public $IdE;
+    public $IdO;
+    public $IdD;
+    public $IdAct;
     public function render()
     {
         return view('livewire.detalle-asignacion', 
@@ -59,7 +70,13 @@ class DetalleAsignacion extends Component
         }
         
     }
-    public function Cap_act($id_Acct){
-      return $this->id_activo=$id_Acct;
+    public function Cap_act($id_act,$codigo,$activo,$serial,$modelo)
+    {
+        $this->id_act=$id_act;
+        $this->codigo=$codigo;
+        $this->activo=$activo;
+        $this->serial=$serial;
+        $this->modelo=$modelo;
+        
     }
 }

@@ -13,15 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/home', 'ActivosController@index')->name('home');
+// Route::get('/home', 'ActivosController@index')->name('home');
     
 Route::get('/reporte_activos', 'ActivosController@report_act')->name('reporte_activos');
 Route::get('/reporte_activos_filter', 'ActivosController@report_filter')->name('reporte_activos_filter');

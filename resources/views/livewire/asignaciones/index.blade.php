@@ -68,8 +68,13 @@
                             </a>
                         </td>
                         <td class="fly">
-                            <button wire:click="edit()"
-                                     class="btn-sm btn btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button wire:click="edit(
+                                                        '{{$asignacion->IdE}}',
+                                                        '{{$asignacion->IdO}}',
+                                                        '{{$asignacion->IdD}}',
+                                                        '{{$asignacion->IdAct}}'
+                                                )"
+                                     class="btn-sm btn btn btn-warning">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square"
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path

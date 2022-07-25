@@ -1,24 +1,41 @@
 <div>
-    <!-- @include('activos.error')
-    {!! Form::open( ['route' => 'asignaciones.store']) !!} -->
+    @include('activos.error')
+    {!! Form::open( ['route' => 'asignaciones.store']) !!}
     <div class="text-center pt-2">
         <h1>Formulario de Asignación</h1>
     </div>
     <div class="row mx-0">
         <div class="card col-5 shadow mx-5 mb-5 bg-body rounded">
             <div class="row p-3">
-                <div class="col-6 p-2">
-                    {{ Form::label('activo', 'Activo') }}
-                    {{ Form::text('IdAct',null, ['class' => 'form-control','readonly']) }}
-                </div>
-                <div class="col-6 p-2">
-                    {{ Form::label('empresa', 'Empresa') }}
-                    {!! Form::select('IdE',$empresas, null, ['class' => 'form-control']) !!}
-                   
+                <div class="col-12 p-2">
+                    <div class="row">
+                        <div class="col-4">
+                            {{ Form::label('activo', 'Código') }}
+                            <input name="IdAct" type="text" style="display:none" class="form-control"
+                                wire:model="id_act">
+                            <input type="text" class="form-control" wire:model="codigo" readonly>
+                        </div>
+                        <div class="col-2">
+                            {{ Form::label('activo', 'Activo') }}
+                            <input type="text" class="form-control" wire:model="activo" disabled>
+                        </div>
+                        <div class="col-5">
+                            {{ Form::label('activo', 'Serial') }}
+                            <input type="text" class="form-control" wire:model="serial" disabled>
+                        </div>
+                        <div class="col-4">
+                            {{ Form::label('activo', 'Modelo') }}
+                            <input type="text" class="form-control" wire:model="modelo" disabled>
+                        </div>
+                        <div class="col-8">
+                            {{ Form::label('empresa', 'Empresa') }}
+                            {!! Form::select('IdE',$empresas, null, ['class' => 'form-control']) !!}
+                        </div>
+                    </div>
                 </div>
                 <div class="col-12 p-2">
                     {{ Form::label('oficina', 'Oficina') }}
-                    {!! Form::select('IdO',$oficinas, null, ['class' => 'form-control']) !!}
+                    {!! Form::select('IdO',$oficinas, $IdE, ['class' => 'form-control']) !!}
                 </div>
                 <div class="col-6 p-2">
                     {{ Form::label('departamento', 'Departamento') }}
@@ -55,17 +72,18 @@
                 </div>
             </div>
         </div>
-        <!-- {!! Form::close() !!} -->
+        {!! Form::close() !!}
         <!-- table -->
-        <div class="card col-6 shadow p-3 mb-5 bg-body rounded " >
+        <div class="card col-6 shadow p-3 mb-5 bg-body rounded ">
             <div class="row">
                 <div class="col-6">
                     <label> Buscar</label>
-                    <input wire:model="search" type="text" placeholder="Buscar por: activo,marca,modelo" class="form-control">
+                    <input wire:model="search" type="text" placeholder="Buscar por: activo,marca,modelo"
+                        class="form-control">
                 </div>
             </div>
             <div class="table-responsive-lg">
-                <table id="" class="table table-striped table-hover " >
+                <table id="" class="table table-striped table-hover ">
                     <thead>
                         <tr>
                             <th>Codigo</th>
@@ -77,29 +95,32 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @if ($search != "")
+                        @if ($search != "")
                         @foreach($activos_all as $activo)
-                            <tr>
-                                <td>{{$activo->Codigo}}</td>
-                                <td>{{$activo->activo}}</td>
-                                <td>{{$activo->Marca}}</td>
-                                <td>{{$activo->Modelo}}</td>
-                                <td>{{$activo->NroSerial}}</td>
-                                <td class="fly">
-                                    <a class="btn-sm btn btn-outline-success" wire:click="Cap_act({{$activo->id }})">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
-                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-                                        </svg>
-                                    </a>
-                                </td>
-                            </tr>
-                            @endforeach
-                    @endif
-                        
+                        <tr>
+                            <td>{{$activo->Codigo}}</td>
+                            <td>{{$activo->activo}}</td>
+                            <td>{{$activo->Marca}}</td>
+                            <td>{{$activo->Modelo}}</td>
+                            <td>{{$activo->NroSerial}}</td>
+                            <td class="fly">
+                                <a class="btn-sm btn btn-outline-success"
+                                    wire:click="Cap_act({{$activo->id}},'{{$activo->Codigo }}','{{$activo->activo }}','{{$activo->NroSerial}}','{{$activo->Modelo}}')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-check-circle" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                        <path
+                                            d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
+                        @endforeach
+                        @endif
                     </tbody>
                 </table>
-                    <!-- @if ($search != "")
+                <!-- @if ($search != "")
                         <div class="d-flex flex-row-reverse px-3">
                             {{$activos_all->render()}}
                         </div>
@@ -107,5 +128,5 @@
             </div>
         </div>
     </div>
-    
+
 </div>
