@@ -10,7 +10,7 @@
                                                             'IdD'   => $detalle_asignacions[0]->IdD,
                                                             'IdAct' => $detalle_asignacions[0]->IdAct
                 ]],'method' => 'PUT']) !!}
-                <livewire:detalle-asignacion/> 
+                @livewire('detalle-asignacion-edit', [$transform]) 
         {!! Form::close() !!}           
     </div>
 </div>

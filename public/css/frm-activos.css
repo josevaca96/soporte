@@ -29,3 +29,9 @@
 .fly{
   padding: 1px 1px  1px !important;
 }
+
+
+.content-titulo{
+  color:rgb(52, 71, 103);
+  font-weight: bolder;
+}

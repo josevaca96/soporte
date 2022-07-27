@@ -15,6 +15,9 @@
                                 <li class=""><a href="/">Inicio</a></li>
                             @endcan
                             @can('activos.index')
+                                <li class=""><a href="reporte-principal">Reportes</a></li>
+                            @endcan
+                            @can('activos.index')
                                 <li><a href="{{ route('activos.index') }}">Activos</a></li>
                             @endcan
                             @can('tipo_activos.index')

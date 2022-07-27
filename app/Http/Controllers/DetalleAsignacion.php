@@ -133,12 +133,15 @@ class DetalleAsignacion extends Controller
      */
     public function edit($IdE,$IdO,$IdD,$IdAct)
     {
+        // dd($IdE,$IdO,$IdD,$IdAct);
         $detalle_asignacions =Asignacion::where('IdE','=',$IdE)
             ->where('IdO','=',$IdO)
             ->where('IdD','=',$IdD)
             ->where('IdAct','=',$IdAct)
             ->get();
+            
             $transform=$detalle_asignacions[0];        
+            
         return view('DetalleAsignacion.edit', compact('detalle_asignacions','transform'));
     }
 
@@ -149,9 +152,42 @@ class DetalleAsignacion extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        
+    public function update(Request $request, Asignacion $obj_asig){ 
+    //    dd($request);
+        //validando los campos del formulario
+        Validator::make($request->all(), [
+            'IdE' => 'required',
+            'IdO' => 'required',
+            'IdD' => 'required',
+            'IdAct' => 'required',
+            'fecha_i' => 'required',
+            ],
+            [
+            'IdE.required' => 'El Campo Empresa es requerido',
+            'IdO.required' => 'El Campo Oficina es requerido',
+            'IdD.required' => 'El Campo Departamento es requerido',
+            'IdAct.required' => 'El Campo Activo es requerido',
+            'fecha_i.required' => 'El Campo Fecha inicial es requerido',
+        ])->validate();
+
+        $obj_asig = DB::table('detalle_asignacions')
+        ->where('id', $request->id)
+        // ->where('IdO', $request->IdO)
+        // ->where('IdD', $request->IdD)
+        // ->where('IdAct', $request->IdAct)
+
+        ->update(['IdE' => $request->IdE,
+                'IdO' => $request->IdO,
+                'IdD' => $request->IdD,
+                'IdAct' => $request->IdAct,
+                'fecha_i' => $request->fecha_i,
+                'fecha_f' => $request->fecha_f,
+                'UsuarioAsig' => $request->UsuarioAsig,
+                'CapRecursos' => $request->CapRecursos]);
+       
+        // $obj_asig->update($request->all());
+        return redirect()->route('asignaciones.index')
+        ->with('info','Actualizado con éxito');
     }
 
     /**

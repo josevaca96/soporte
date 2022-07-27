@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Asignacion;
 use Illuminate\Http\Request;
 
 class ReporteController extends Controller
@@ -21,9 +21,22 @@ class ReporteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function reporte_principal()
     {
-        //
+        return view('reportes.principal');
+    }
+     public function traer_usuario_asig(Request $request)
+    {
+        $term = $request->get('term');
+
+        $querys = Asignacion::where('UsuarioAsig','LIKE', '%'.$term . '%')->get();
+        $data = [];
+        foreach($querys as $query){
+            $data[] = [
+                'UsuarioAsig' => $query->UsuarioAsig
+            ];
+        }
+        return $data; 
     }
 
     /**

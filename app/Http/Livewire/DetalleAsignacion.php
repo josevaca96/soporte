@@ -25,8 +25,7 @@ class DetalleAsignacion extends Component
     public $IdO;
     public $IdD;
     public $IdAct;
-    public function render()
-    {
+    public function render(){
         return view('livewire.detalle-asignacion', 
         [
             //
@@ -53,8 +52,7 @@ class DetalleAsignacion extends Component
             'departamentos'  =>Departamento::all()->pluck('Nombre','id')
         ]);
     }
-    public function traer_activos()
-    {         
+    public function traer_activos(){         
         if($this->search != ''){
             $activos_modal =DB::table('activos')
             ->join('tipo_activos', 'activos.IdTAct', '=', 'tipo_activos.id')
@@ -70,13 +68,11 @@ class DetalleAsignacion extends Component
         }
         
     }
-    public function Cap_act($id_act,$codigo,$activo,$serial,$modelo)
-    {
+    public function Cap_act($id_act,$codigo,$activo,$serial,$modelo){
         $this->id_act=$id_act;
         $this->codigo=$codigo;
         $this->activo=$activo;
         $this->serial=$serial;
-        $this->modelo=$modelo;
-        
+        $this->modelo=$modelo;  
     }
 }

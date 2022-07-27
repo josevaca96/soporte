@@ -77,6 +77,7 @@ class EmpresasController extends Controller
      */
     public function update(Request $request,Empresa $empresa)
     {
+        // dd($request);
         //validando los campos del formulario
         Validator::make($request->all(), [
             'Nombre' => 'required',

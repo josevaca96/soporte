@@ -50,6 +50,7 @@ class TablaBase extends Migration
             $table->softDeletes();
         });
         Schema::create('detalle_asignacions', function (Blueprint $table) {
+            $table->bigInteger('id')->unique();
             $table->bigInteger('IdE');
             $table->bigInteger('IdO');
             $table->bigInteger('IdD');
@@ -59,7 +60,7 @@ class TablaBase extends Migration
             $table->string ('UsuarioAsig',60)->nullable();
             $table->string ('CapRecursos',60)->nullable();
             $table->softDeletes();
-            $table->primary(['IdE','IdO','IdD','IdAct']);
+            $table->primary(['id','IdE','IdO','IdD','IdAct']);
             $table->foreign('IdAct')->references('id')->on('activos');
             $table->foreign('IdE')->references('id')->on('empresas');
             $table->foreign('IdO')->references('id')->on('oficinas');
