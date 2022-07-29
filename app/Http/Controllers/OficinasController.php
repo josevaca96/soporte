@@ -82,7 +82,7 @@ class OficinasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update()
+    public function update(Request $request, Oficina $oficina)
     {
         //validando los campos del formulario
         Validator::make($request->all(), [
