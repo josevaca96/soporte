@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Asignacion;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ReporteController extends Controller
@@ -28,12 +29,13 @@ class ReporteController extends Controller
      public function traer_usuario_asig(Request $request)
     {
         $term = $request->get('term');
-
-        $querys = Asignacion::where('UsuarioAsig','LIKE', '%'.$term . '%')->get();
-        $data = [];
+        $querys = DB::table('detalle_asignacions')
+            ->select('UsuarioAsig')
+            ->where('UsuarioAsig','LIKE', '%'.$term . '%')->distinct()->get();
+            $data = [];
         foreach($querys as $query){
             $data[] = [
-                'UsuarioAsig' => $query->UsuarioAsig
+                'label' => $query->UsuarioAsig
             ];
         }
         return $data; 

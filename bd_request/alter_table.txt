@@ -1,1 +1,1 @@
-ALTER TABLE document MODIFY COLUMN document_id INT auto_increment
+ALTER TABLE detalle_asignacions MODIFY COLUMN id INT AUTO_INCREMENT

@@ -153,7 +153,7 @@ class DetalleAsignacion extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Asignacion $obj_asig){ 
-    //    dd($request);
+    // dd($request);
         //validando los campos del formulario
         Validator::make($request->all(), [
             'IdE' => 'required',
@@ -169,12 +169,11 @@ class DetalleAsignacion extends Controller
             'IdAct.required' => 'El Campo Activo es requerido',
             'fecha_i.required' => 'El Campo Fecha inicial es requerido',
         ])->validate();
-
         $obj_asig = DB::table('detalle_asignacions')
-        ->where('id', $request->id)
-        // ->where('IdO', $request->IdO)
-        // ->where('IdD', $request->IdD)
-        // ->where('IdAct', $request->IdAct)
+        ->where('IdE', $request->ide2)
+        ->where('IdO', $request->ido2)
+        ->where('IdD', $request->idd2)
+        ->where('IdAct', $request->idact2)
 
         ->update(['IdE' => $request->IdE,
                 'IdO' => $request->IdO,

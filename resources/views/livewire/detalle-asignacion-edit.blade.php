@@ -7,23 +7,26 @@
                     <div class="row p-5">
                         <div class="col-5 pt-2">
                             {{ Form::label('empresa', 'Empresa') }}
-                            {!! Form::select('IdE',$empresas,$var_IdE, ['class' => 'form-control']) !!}
+                            <input type="text" name="ide2" value="{{$v_ant_ide}}" class="form-control" style="display:none;">
+                            {!! Form::select('IdE',$empresas,$var_IdE, ['class' => 'form-control']) !!}                            
                         </div>
                         <div class="col-7 pt-2">
                             {{ Form::label('departamento', 'Departamento') }}
+                            <input type="text" name="idd2" value="{{$v_ant_idd}}" class="form-control" style="display:none;">
                             {!! Form::select('IdD',$departamentos,$var_IdD, ['class' => 'form-control']) !!}
+                            
                         </div>
                         <div class="col-12 pt-2">
-                            {{ Form::label('empresa', 'Oficina') }}
+                            {{ Form::label('oficina', 'Oficina') }}
+                            <input type="text" name="ido2" value="{{$v_ant_ido}}" class="form-control" style="display:none;">
                             {!! Form::select('IdO',$oficinas,$var_IdO, ['class' => 'form-control']) !!}
+                            
                         </div>
 
                         <div class="col-4 pt-2">
                             {{ Form::label('activo', 'Código') }}
-                            <input name="IdAct" type="text" style="display:none" class="form-control"
-                                wire:model="var_IdAct">
-                                <input name="id" type="text" style="display:none" class="form-control"
-                                wire:model="id_detalle_asignacion">
+                            <input type="text" name="idact2" value="{{$v_ant_idact}}" class="form-control" style="display:none;">
+                            <input name="IdAct" type="text" style="display:none;"  class="form-control" wire:model="var_IdAct">
                             <input type="text" class="form-control" wire:model="Codigo" readonly>
                         </div>
                         <div class="col-8 pt-2">

@@ -10,5 +10,5 @@ Route::get('asignacion_report' , 'ReporteController@index')->name('asignacion_re
 Route::get('busqueda_rapida' , 'ActivosController@busqueda')->name('busqueda_rapida');
 Route::get('reporte-principal' , 'ReporteController@reporte_principal')->name('reporte-principal.index');
 
-Route::get('reporte-usuario_asig' , 'ReporteController@traer_usuario_asig')->name('reporte-usuario_asig.index');
+Route::get('reporteg' , 'ReporteController@traer_usuario_asig')->name('reporteg');
 });

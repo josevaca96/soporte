@@ -9,50 +9,46 @@
             <div class="row p-3">
                 <div class="col-12 p-2">
                     <div class="row">
+                        <div class="col-5">
+                            {{ Form::label('empresa', 'Empresa') }}
+                            {!! Form::select('IdE',$empresas, null, ['class' => 'form-control']) !!}
+                        </div>
+                        <div class="col-6">
+                            {{ Form::label('departamento', 'Departamento') }}
+                            {!! Form::select('IdD',$departamentos, null, ['class' => 'form-control']) !!}
+                        </div>
+                        <div class="col-12 p-2">
+                            {{ Form::label('oficina', 'Oficina') }}
+                            {!! Form::select('IdO',$oficinas, $IdE, ['class' => 'form-control']) !!}
+                        </div>
                         <div class="col-4">
                             {{ Form::label('activo', 'Código') }}
                             <input name="IdAct" type="text" style="display:none" class="form-control"
                                 wire:model="id_act">
                             <input type="text" class="form-control" wire:model="codigo" readonly>
                         </div>
-                        <div class="col-2">
-                            {{ Form::label('activo', 'Activo') }}
-                            <input type="text" class="form-control" wire:model="activo" disabled>
-                        </div>
-                        <div class="col-5">
+                        <div class="col-8">
                             {{ Form::label('activo', 'Serial') }}
                             <input type="text" class="form-control" wire:model="serial" disabled>
                         </div>
-                        <div class="col-4">
-                            {{ Form::label('activo', 'Modelo') }}
-                            <input type="text" class="form-control" wire:model="modelo" disabled>
-                        </div>
-                        <div class="col-8">
-                            {{ Form::label('empresa', 'Empresa') }}
-                            {!! Form::select('IdE',$empresas, null, ['class' => 'form-control']) !!}
-                        </div>
+                        
+
                     </div>
                 </div>
-                <div class="col-12 p-2">
-                    {{ Form::label('oficina', 'Oficina') }}
-                    {!! Form::select('IdO',$oficinas, $IdE, ['class' => 'form-control']) !!}
-                </div>
-                <div class="col-6 p-2">
-                    {{ Form::label('departamento', 'Departamento') }}
-                    {!! Form::select('IdD',$departamentos, null, ['class' => 'form-control']) !!}
-                </div>
-                <div class="col-6 p-2">
+
+
+                <div class="col-3 p-2">
                     <label for="" class="mb-0">Cap/Recurso</label>
                     {!! Form::select('CapRecursos', [
                     'NO' => 'NO',
                     'SI' => 'SI',
                     ],null,['class' => 'form-control']) !!}
                 </div>
-                <div class="col-6 p-2">
+                <div class="col-4 p-2">
                     <label for="" class="mb-0">Fecha Inicio</label>
                     {{Form::date('fecha_i', \Carbon\Carbon::now(),['class' => 'form-control'])}}
                 </div>
-                <div class="col-6 p-2">
+                <div class="col-4 p-2">
                     <label for="" class="mb-0">Fecha Fin</label>
                     {{Form::date('fecha_f',null,['class' => 'form-control','placeholder' =>'dd/mm/aaaa'])}}
                 </div>

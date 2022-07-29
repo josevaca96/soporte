@@ -34,9 +34,15 @@ class DetalleAsignacionEdit extends Component
     public $CapRecursos;
     public $Codigo;
     public $NroSerial;
-    public $id_detalle_asignacion;
     // 
     public $obj_activos;
+
+    //claves de comprovación
+    public $v_ant_ide;
+    public $v_ant_ido;
+    public $v_ant_idd;
+    public $v_ant_idact;
+
     public function render(){
         return view('livewire.detalle-asignacion-edit', 
         [
@@ -63,7 +69,7 @@ class DetalleAsignacionEdit extends Component
         
     }
     public function Cap_act($id_act,$codigo,$activo,$serial,$modelo){
-        $this->id_act=$id_act;
+        $this->var_IdAct=$id_act;
         $this->Codigo=$codigo;
         $this->activo=$activo;
         $this->NroSerial=$serial;
@@ -73,7 +79,6 @@ class DetalleAsignacionEdit extends Component
         // dd($transform->id);
         // cargar los datos del activo
         $this->id_activo_get($transform->IdAct);
-        $this->id_detalle_asignacion =$transform->id;
         $this->var_IdE = $transform->IdE;
         $this->var_IdD = $transform->IdD;
         $this->var_IdO = $transform->IdO;
@@ -81,6 +86,12 @@ class DetalleAsignacionEdit extends Component
         $this->fecha_i = $transform->fecha_i;
         $this->fecha_f = $transform->fecha_f;
         $this->UsuarioAsig = $transform->UsuarioAsig;
+
+        // llenar los datos de las claves anterior del objeto
+        $this->v_ant_ide = $transform->IdE;
+        $this->v_ant_ido = $transform->IdO;
+        $this->v_ant_idd = $transform->IdD;
+        $this->v_ant_idact = $transform->IdAct;
     }
     public function id_activo_get($id){
         $act =DB::table('activos')

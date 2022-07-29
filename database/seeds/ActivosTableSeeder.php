@@ -41,7 +41,15 @@ class ActivosTableSeeder extends Seeder
                 'Nombre'    => 'Ventas',
                 'Descripcion'   => '..',
             ]);
-        
+            Departamento::create([
+                'Nombre'    => 'Marketing',
+                'Descripcion'   => '..',
+            ]);
+            Departamento::create([
+                'Nombre'    => 'Producción',
+                'Descripcion'   => '..',
+            ]);
+            
     
     
         //Oficinas
@@ -53,6 +61,15 @@ class ActivosTableSeeder extends Seeder
                 'Direccion'    => 'Primer Anillo Av/Cañoto',
                 'Descripcion'   => 'Edificio Celina Central',
             ]);
+            Oficina::create([
+                'Direccion'    => 'Prodasa /Km 20 - Carretera al Norte',
+                'Descripcion'   => '...',
+            ]);
+            Oficina::create([
+                'Direccion'    => 'Prodasa /Km 9 - Carretera al Norte',
+                'Descripcion'   => '...',
+            ]);
+            
         //Empresa
             Empresa::create([
                 'Nombre'    => 'Galileo',
@@ -73,6 +90,10 @@ class ActivosTableSeeder extends Seeder
             Empresa::create([
                 'Nombre'    => 'Brisas de Paz',
                 'Descripcion'   => 'Venta de terrenos Parque Cementerio',
+            ]);
+            Empresa::create([
+                'Nombre'    => 'PRODASA',
+                'Descripcion'   => 'Rubro Avicola',
             ]);    
         //Tipo Activo
             TipoActivo::create([
@@ -225,6 +246,18 @@ class ActivosTableSeeder extends Seeder
             ]);
             TipoActivo::create([
                 'Nombre'    => 'Fuente-de-Alimentacion',
+                'Descripcion'   => '..',
+            ]);
+            TipoActivo::create([
+                'Nombre'    => 'Cooler',
+                'Descripcion'   => '..',
+            ]);
+            TipoActivo::create([
+                'Nombre'    => 'Contador-de-Billetes',
+                'Descripcion'   => '..',
+            ]);
+            TipoActivo::create([
+                'Nombre'    => 'Detector-de-Billetes',
                 'Descripcion'   => '..',
             ]);
             
@@ -965,6 +998,105 @@ class ActivosTableSeeder extends Seeder
                 (707, 'IT-ACT00707', 3, 'IMICRO', 'KB-IMW6020', '841106109842', 'adecuado', 'Tienda Celina Montero', NULL),
                 (708, 'IT-ACT00708', 4, 'BTO', 'OPTICAL MOUSE', NULL, 'adecuado', 'RRHH', NULL),
                 (709, 'IT-ACT00709', 4, 'GENIUS', 'GM-23003', '148102103179', 'adecuado', 'RRHH', NULL)
+            ");
+
+
+            DB::statement("
+                INSERT INTO `activos` (`id`, `Codigo`, `IdTAct`, `Marca`, `Modelo`, `NroSerial`, `Condicion`, `Observaciones`, `deleted_at`) VALUES
+                (710, 'IT-ACT00710', 1, 'prueba', 'prueba', 'prueba', 'adecuado', NULL, NULL),
+                (711, 'IT-ACT00711', 1, 'prueba', 'prueba', 'prueba', 'adecuado', NULL, NULL),
+                (712, 'IT-ACT00712', 1, 'prueba', 'prueba', NULL, 'adecuado', NULL, NULL),
+                (713, 'IT-ACT00713', 1, 'prueba', 'prueba', 'pruebaç', 'adecuado', NULL, NULL),
+                (714, 'IT-ACT00714', 1, 'prueba', 'prueba', 'prueba', 'adecuado', 'prue', NULL),
+                (715, 'IT-ACT00715', 5, NULL, NULL, NULL, 'adecuado', NULL, NULL),
+                (716, 'IT-ACT00716', 7, 'SAMSUNG', '519F350HNL', 'ZZJDH4TH804078A', 'adecuado', NULL, NULL),
+                (717, 'IT-ACT00717', 3, 'SURE', 'K589', NULL, 'adecuado', NULL, NULL),
+                (718, 'IT-ACT00718', 4, 'SURE', 'OPTICAL MOUSE', NULL, 'adecuado', NULL, NULL),
+                (719, 'IT-ACT00719', 6, 'HP', 'CE658A', 'BRB5FCYMSD', 'adecuado', NULL, NULL),
+                (720, 'IT-ACT00720', 2, 'SAMSUNG', 'A1514-EPN', 'CN07BN4400590C5K28H7ME583', 'adecuado', 'Cargador de Monitor', NULL),
+                (721, 'IT-ACT00721', 28, 'Mercusys', 'MW302R', '22135J2000978', 'adecuado', 'Router inalambrico', NULL),
+                (722, 'IT-ACT00722', 21, 'Alcatel', NULL, NULL, 'adecuado', NULL, NULL),
+                (723, 'IT-ACT00723', 5, 'SURE', NULL, NULL, 'adecuado', NULL, NULL),
+                (724, 'IT-ACT00724', 1, 'DELL', 'VOSTRO 3400', 'J4XL983', 'adecuado', NULL, NULL),
+                (725, 'IT-ACT00725', 4, 'DELL', 'MORF FLUOA', 'CN0NNP0G-PRC00-09 J-0100', 'adecuado', NULL, NULL),
+                (726, 'IT-ACT00726', 3, 'KLIP XTREME', 'KNP-110', 'INC20062717172', 'adecuado', NULL, NULL),
+                (727, 'IT-ACT00727', 2, 'DELL', 'LAU5NM140', 'CN0KXTTWL0C000AR7B48A12', 'adecuado', 'Cargador de Laptop', NULL),
+                (728, 'IT-ACT00728', 6, 'EPSON', 'L120', 'TNWK069327', 'adecuado', NULL, NULL),
+                (729, 'IT-ACT00729', 39, 'PAD', NULL, NULL, 'adecuado', NULL, NULL),
+                (730, 'IT-ACT00730', 40, 'VERICASH', 'VC3600', '1810034', 'adecuado', NULL, NULL),
+                (731, 'IT-ACT00731', 41, 'VERICASH', 'BC16M-220', '6S18011022', 'adecuado', NULL, NULL),
+                (732, 'IT-ACT00732', 41, 'VERICASH', 'VC16M-220', '6S1801011028', 'adecuado', NULL, NULL),
+                (733, 'IT-ACT00733', 1, 'DELL', 'VOSTRO 3400', '3HJL983', 'adecuado', NULL, NULL),
+                (734, 'IT-ACT00734', 4, 'DELL', 'MORFFUOA', 'CN-0NND0E-PRC00-09J-DLUE', 'adecuado', NULL, NULL),
+                (735, 'IT-ACT00735', 2, 'DELL', 'LA45NM140', NULL, 'adecuado', 'Cargador de Laptop', NULL),
+                (736, 'IT-ACT00736', 39, 'PAD', NULL, NULL, 'adecuado', NULL, NULL),
+                (737, 'IT-ACT00737', 6, 'CANON', 'F158200', 'MTCA203539', 'adecuado', NULL, NULL),
+                (738, 'IT-ACT00738', 3, 'GENIUS', 'F158200GK-100011', 'X8L759B01221', 'adecuado', NULL, NULL),
+                (739, 'IT-ACT00739', 4, 'GENIUS', 'GM-150014', 'X6J93286204483', 'adecuado', NULL, NULL),
+                (740, 'IT-ACT00740', 7, 'LG', '19EN33SA', '306NDUN6L374', 'adecuado', NULL, NULL),
+                (741, 'IT-ACT00741', 1, 'LENOVO', '20KSS0EA00', 'PF1G57UV', 'adecuado', NULL, NULL),
+                (742, 'IT-ACT00742', 4, 'GENIUS', 'GK-120012/T', 'WV15JWA01228', 'adecuado', NULL, NULL),
+                (743, 'IT-ACT00743', 2, 'LENOVO', 'ADLX65YCC2A', '8SSA10413947C1SG8A90E1G', 'adecuado', 'Cargador de laptop', NULL),
+                (744, 'IT-ACT00744', 1, 'DELL', 'VOSTRO-3400', '542V7F3', 'adecuado', NULL, NULL),
+                (745, 'IT-ACT00745', 4, 'GENIUS', 'NX-7020', 'X0F95593200375', 'adecuado', NULL, NULL),
+                (746, 'IT-ACT00746', 2, 'DELL', 'LA45NM14', 'CN0KXTTWC0C0011778C3A12', 'adecuado', 'Cargador de laptop', NULL),
+                (747, 'IT-ACT00747', 3, 'XKLIP-XTREME', 'KNP-110', 'INC20062717263', 'adecuado', NULL, NULL),
+                (748, 'IT-ACT00748', 39, 'PAD', NULL, NULL, 'adecuado', NULL, NULL),
+                (749, 'IT-ACT00749', 8, 'LG', NULL, 'MEZ6621840S(REV00)', 'adecuado', NULL, NULL),
+                (750, 'IT-ACT00750', 8, 'LG', '65UP7750PSB', '201RMTT2B969', 'adecuado', NULL, NULL),
+                (751, 'IT-ACT00751', 10, 'LOGITECH', NULL, NULL, 'adecuado', NULL, NULL),
+                (752, 'IT-ACT00752', 9, 'EPSON', 'H839', 'X4GL9201220', 'adecuado', NULL, NULL),
+                (753, 'IT-ACT00753', 2, 'LG', 'DSA-18CB-12FCA', NULL, 'adecuado', 'Cargador de TV', NULL),
+                (754, 'IT-ACT00754', 22, 'EPSON', NULL, NULL, 'adecuado', 'Control de Proyector', NULL),
+                (755, 'IT-ACT00755', 22, 'LG', 'AKB76037603', NULL, 'adecuado', 'Control de TV', NULL),
+                (756, 'IT-ACT00756', 22, 'LG', 'MR21GA', NULL, 'adecuado', 'Control de TV', NULL);
+            ");
+
+            DB::statement("
+                INSERT INTO `detalle_asignacions` (`IdE`, `IdO`, `IdD`, `IdAct`, `fecha_i`, `fecha_f`, `UsuarioAsig`, `CapRecursos`, `deleted_at`) VALUES
+                (1, 2, 7, 3, '2022-07-04', '2022-07-04', 'BRANDON COPALI', 'NO', NULL),
+                (6, 3, 8, 715, '2022-07-05', '2022-07-06', 'Roger Mano', 'SI', NULL),
+                (6, 3, 8, 716, '2022-07-05', '2022-07-06', 'Roger Mano', 'NO', NULL),
+                (6, 3, 8, 717, '2022-07-05', '2022-07-06', 'Roger Mano', 'NO', NULL),
+                (6, 3, 8, 718, '2022-07-05', '2022-07-06', 'Roger Mano', 'NO', NULL),
+                (6, 3, 8, 719, '2022-07-05', NULL, 'Roger Mano', 'NO', NULL),
+                (6, 3, 8, 720, '2022-07-05', NULL, 'Roger Mano', 'NO', NULL),
+                (6, 3, 8, 721, '2022-07-05', '2022-07-06', 'Roger Mano', 'NO', NULL),
+                (6, 3, 8, 722, '2022-07-05', NULL, 'Roger Mano', 'NO', NULL),
+                (6, 4, 8, 723, '2022-07-05', NULL, 'Julio cesar Mercado', 'SI', NULL),
+                (6, 4, 8, 724, '2022-07-05', '2022-07-06', 'Carlos Morón', 'SI', NULL),
+                (6, 4, 8, 725, '2022-07-05', NULL, 'Carlos Morón', 'NO', NULL),
+                (6, 4, 8, 726, '2022-07-05', NULL, 'Carlos Morón', 'NO', NULL),
+                (6, 4, 8, 727, '2022-07-05', NULL, 'Carlos Morón', 'NO', NULL),
+                (6, 4, 8, 728, '2022-07-05', NULL, 'Carlos Morón', 'NO', NULL),
+                (6, 4, 8, 729, '2022-07-05', NULL, 'Carlos Morón', 'NO', NULL),
+                (6, 4, 8, 730, '2022-07-05', NULL, 'Carlos Morón', 'NO', NULL),
+                (6, 4, 8, 731, '2022-07-05', NULL, 'Carlos Morón', 'NO', NULL),
+                (6, 4, 8, 732, '2022-07-05', NULL, 'Alejandro Bustillos', 'NO', NULL),
+                (6, 4, 8, 733, '2022-07-05', NULL, 'Cinthia Iriarte', 'SI', NULL),
+                (6, 4, 8, 734, '2022-07-05', NULL, 'Cinthia Iriarte', 'NO', NULL),
+                (6, 4, 8, 735, '2022-07-05', NULL, 'Cinthia Iriarte', 'NO', NULL),
+                (6, 4, 8, 736, '2022-07-05', NULL, 'Cinthia Iriarte', 'NO', NULL),
+                (6, 4, 8, 737, '2022-07-05', NULL, NULL, 'NO', NULL),
+                (6, 4, 8, 738, '2022-07-05', NULL, 'Julio cesar Mercado', 'NO', NULL),
+                (6, 4, 8, 739, '2022-07-05', NULL, 'Julio cesar Mercado', 'NO', NULL),
+                (6, 4, 8, 740, '2022-07-05', NULL, 'Julio cesar Mercado', 'NO', NULL),
+                (6, 4, 8, 741, '2022-07-05', NULL, 'BORIS OBLITAS', 'SI', NULL),
+                (6, 4, 8, 742, '2022-07-05', NULL, 'BORIS OBLITAS', 'NO', NULL),
+                (6, 4, 8, 743, '2022-07-05', NULL, 'BORIS OBLITAS', 'NO', NULL),
+                (6, 4, 8, 744, '2022-07-05', NULL, 'JAIME VALDIVIA', 'SI', NULL),
+                (6, 4, 8, 745, '2022-07-05', NULL, 'JAIME VALDIVIA', 'NO', NULL),
+                (6, 4, 8, 746, '2022-07-05', NULL, 'JAIME VALDIVIA', 'NO', NULL),
+                (6, 4, 8, 747, '2022-07-05', NULL, 'JAIME VALDIVIA', 'NO', NULL),
+                (6, 4, 8, 748, '2022-07-05', NULL, 'CRISTIAN PINTO', 'NO', NULL),
+                (6, 4, 8, 749, '2022-07-05', NULL, NULL, 'NO', NULL),
+                (6, 4, 8, 750, '2022-07-05', NULL, NULL, 'NO', NULL),
+                (6, 4, 8, 751, '2022-07-05', NULL, NULL, 'NO', NULL),
+                (6, 4, 8, 752, '2022-07-05', NULL, NULL, 'NO', NULL),
+                (6, 4, 8, 753, '2022-07-05', NULL, NULL, 'NO', NULL),
+                (6, 4, 8, 754, '2022-07-05', NULL, NULL, 'NO', NULL),
+                (6, 4, 8, 755, '2022-07-05', NULL, NULL, 'NO', NULL),
+                (6, 4, 8, 756, '2022-07-05', NULL, NULL, 'NO', NULL);
             ");
     
     }

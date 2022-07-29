@@ -1,7 +1,7 @@
  @extends('layouts.app')
  @section('content')
  <div class="container-fluid shadow-sm p-3 mb-5 bg-white rounded">
-     <h1 class="text-info "><strong>Asignación de Activos</strong></h1>
+     <!-- <h1 class="text-info "><strong>Asignación de Activos</strong></h1>
      <div class="row">
          <div class="col-md-12">
              <div class="">
@@ -10,7 +10,28 @@
 
                  </a>
              </div>
-             <div class="panel-body shadow p-3 mb-5 bg-white rounded">
+              -->
+
+
+
+
+             <div class="row">   
+        <div class="col-sm-6">
+            <div class="d-flex justify-content-start pb-2">
+            <h2 class="text-info mb-0"><strong>Asignación de Activos</strong></h2>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="d-flex justify-content-end pb-2">
+                <a href="{{route('asignaciones.create')}}" class="btn btn-sm btn-primary mr-2">
+                    Crear
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+             
                  <div class="table-responsive-lg">
                      <table id="activos" class="table table-striped table-hover ">
                          <thead>
@@ -103,7 +124,7 @@
                      </div>
 
                  </div>
-             </div>
+             
          </div>
      </div>
  </div>

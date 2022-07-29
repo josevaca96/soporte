@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 
@@ -13,20 +12,49 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
-        $("#tags").autocomplete({
-            source: function(request , response){
-                $.ajax({
-                    url: "{{route('reporte-usuario_asig.index')}}",
-                    dataType: 'json',
-                    data:{
-                        term : request.term 
-                    },
-                    success: function(data){
-                      response(data)  
-                    }
-                });   
-            }
+        var items =['RICARDO','LENY', 'MARIAN'];
+        $(function(){
+            $('#tags').autocomplete({
+                source: function(request , response){
+                    $.ajax({
+                        url:"{{route('reporteg')}}",
+                        dataType: 'json',
+                        data:{
+                           term:request.term 
+                        },
+                        success: function(data){
+                            response(data)
+                        }
+                    });
+                }
+            });
         });
+        
+
+    // var obj_usuarios_asig=[];  
+    // $(document).ready(function() {
+
+    //     $.ajax({
+    //         url: "{{route('reporteg')}}",
+    //         type: 'GET',
+    //         success: function(respuesta) {
+    //             obj_usuarios_asig=respuesta;
+
+    //         },
+    //         error: function() {
+    //             console.error("No es posible completar la operación");
+    //         }
+    //     });
+
+
+    // });
+    // console.log(obj_usuarios_asig);
+    // $(function() {
+    //             $("#tags").autocomplete({
+    //         source: obj_usuarios_asig, 
+
+    //     });
+    // });
     </script>
 </head>
 
@@ -61,35 +89,35 @@
             </div>
             <div class="col-1" style="padding-top:26px;">
                 <button class="btn btn-sm btn-primary">Buscar</button>
-            </div> 
+            </div>
         </div>
         <br>
 
         <div class="p-2 card">
             <p class="text-secondary">Resultado del Filtro</p>
             <div class="table-responsive-lg">
-                     <table id="activos" class="table table-striped table-hover ">
-                         <thead>
-                             <tr>
-                                 <th>ID</th>
-                                 <th>Nombre</th>
-                                 <th>Descripción</th>
-                                 <th colspan="3" width="8%">Acciones</th>
-                             </tr>
-                         </thead>
-                         <tbody>
-                            
-                             <tr>
-                            
-                             </tr>
-                             
-                         </tbody>
+                <table id="activos" class="table table-striped table-hover ">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th colspan="3" width="8%">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                     </table>
-                 </div>
+                        <tr>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
         </div>
     </div>
-    
+
 </body>
 
 </html>
