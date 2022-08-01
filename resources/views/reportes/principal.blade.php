@@ -11,50 +11,24 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="{{asset('js/reporte.js')}}"></script>
     <script>
-        var items =['RICARDO','LENY', 'MARIAN'];
-        $(function(){
-            $('#tags').autocomplete({
-                source: function(request , response){
-                    $.ajax({
-                        url:"{{route('reporteg')}}",
-                        dataType: 'json',
-                        data:{
-                           term:request.term 
-                        },
-                        success: function(data){
-                            response(data)
-                        }
-                    });
-                }
-            });
+    $(function() {
+        $('#tags').autocomplete({
+            source: function(request, response) {
+                $.ajax({
+                    url: "{{route('reporteg')}}",
+                    dataType: 'json',
+                    data: {
+                        term: request.term
+                    },
+                    success: function(data) {
+                        response(data)
+                    }
+                });
+            }
         });
-        
-
-    // var obj_usuarios_asig=[];  
-    // $(document).ready(function() {
-
-    //     $.ajax({
-    //         url: "{{route('reporteg')}}",
-    //         type: 'GET',
-    //         success: function(respuesta) {
-    //             obj_usuarios_asig=respuesta;
-
-    //         },
-    //         error: function() {
-    //             console.error("No es posible completar la operación");
-    //         }
-    //     });
-
-
-    // });
-    // console.log(obj_usuarios_asig);
-    // $(function() {
-    //             $("#tags").autocomplete({
-    //         source: obj_usuarios_asig, 
-
-    //     });
-    // });
+    });
     </script>
 </head>
 
@@ -63,34 +37,43 @@
     <div class="container pt-5">
         <h1>Reportes</h1>
         <div class="row pt-5">
-            <div class="col-3">
-                <label for="tags">Usuario asignado: </label>
-                <input id="tags" class="form-control" placeholder="Escriba un usuario..">
-            </div>
-            <div class="col-3">
-                <label for="tags">Empresa: </label>
-                <select name="empresa" id="" class="form-control">
-                    <option value="">todas las empresas</option>
-                    <option value="">empresa1</option>
-                    <option value="">empresa2</option>
-                </select>
-            </div>
-            <div class="col-2">
-                <label for="tags">Activo: </label>
-                <select name="empresa" id="" class="form-control">
-                    <option value="">Todos los activos</option>
-                    <option value="">Monitor</option>
-                    <option value="">Pc-Escritorio</option>
-                </select>
-            </div>
-            <div class="col-3">
+            <form class="d-flex" action="{{route('mostrar_reporte.index')}}" method="get">
+                <div class="col-3 p-2">
+                    <label for="tags">Usuario asignado: </label>
+                    <!-- <form action=""> -->
+                    <input id="tags" name="usuario_asig" class="form-control" placeholder="Escriba un usuario..">
+                    <label><input type="checkbox" id="check_all" onclick="verificar()"> Todos Los Usuarios</label>
+                    <!-- </form> -->
+
+                </div>
+                <div class="col-3 p-2">
+                    <label for="tags">Empresa: </label>
+                    <select name="empresa" id="" class="form-control">
+                        <option value="">todas las empresas</option>
+                        @foreach($empresas as $empresa)
+                        <option value="{{$empresa->id}}">{{$empresa->Nombre}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-2 p-2">
+                    <label for="tags">Activo: </label>
+                    <select name="activo" id="" class="form-control">
+                        <option value="">Todos los activos</option>
+                        @foreach($tipo_activos as $tipo_activo)
+                        <option value="{{$tipo_activo->id}}">{{$tipo_activo->Nombre}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <!-- <div class="col-3">
                 <label for="tags">Fecha De Asignación: </label>
                 {{Form::date('fecha_f',null,['class' => 'form-control'])}}
-            </div>
-            <div class="col-1" style="padding-top:26px;">
-                <button class="btn btn-sm btn-primary">Buscar</button>
-            </div>
+                </div> -->
+                <div class="col-1 " style="padding-top:35px;" >
+                    <button class="btn btn-sm btn-primary" type="submit">Buscar</button>
+                </div>
+            </form>
         </div>
+        
         <br>
 
         <div class="p-2 card">
@@ -99,18 +82,21 @@
                 <table id="activos" class="table table-striped table-hover ">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Descripción</th>
-                            <th colspan="3" width="8%">Acciones</th>
+                            <th>Codigo</th>
+                            <th>Activo</th>
+                            <th>usuario</th>
+                            <th>empresa</th>
                         </tr>
                     </thead>
                     <tbody>
-
-                        <tr>
-
-                        </tr>
-
+                    @foreach($reportes as $reporte)
+                             <tr>
+                                 <td>{{$reporte->Codigo}}</td>
+                                 <td>{{$reporte->activo}}</td>
+                                 <td>{{$reporte->UsuarioAsig}}</td>
+                                 <td>{{$reporte->empresa}}</td>
+                             </tr>
+                             @endforeach
                     </tbody>
 
                 </table>

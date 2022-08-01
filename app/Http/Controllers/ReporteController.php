@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Asignacion;
+use App\Empresa;
+use App\TipoActivo;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -16,18 +18,13 @@ class ReporteController extends Controller
     {
         return view('reportes.index');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function reporte_principal()
-    {
-        return view('reportes.principal');
+    public function reporte_principal(Request $request)
+    { 
+        $empresas = Empresa::all();
+        $tipo_activos = TipoActivo::all();
+        return view('reportes.principal', compact('empresas','tipo_activos'));
     }
-     public function traer_usuario_asig(Request $request)
-    {
+     public function traer_usuario_asig(Request $request){
         $term = $request->get('term');
         $querys = DB::table('detalle_asignacions')
             ->select('UsuarioAsig')
@@ -40,60 +37,37 @@ class ReporteController extends Controller
         }
         return $data; 
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function mostrar_reporte(Request $request){
+        $reportes = DB::table('detalle_asignacions')
+        ->join('empresas', 'empresas.id', '=', 'detalle_asignacions.IdE')
+        ->join('oficinas', 'oficinas.id', '=', 'detalle_asignacions.IdO')
+        ->join('departamentos', 'departamentos.id', '=', 'detalle_asignacions.IdD')
+        ->join('activos', 'detalle_asignacions.IdAct', '=', 'activos.id')
+        ->join('tipo_activos', 'activos.IdTAct', '=', 'tipo_activos.id')
+        ->select('activos.Codigo',
+                
+                'detalle_asignacions.IdE',
+                'detalle_asignacions.IdO',
+                'detalle_asignacions.IdD',
+                'detalle_asignacions.IdAct',
+                'tipo_activos.Nombre as activo',
+                'detalle_asignacions.UsuarioAsig',
+                'empresas.Nombre as empresa',
+                'oficinas.Direccion',
+                'departamentos.Nombre as departamento',
+                'detalle_asignacions.fecha_i',
+                'detalle_asignacions.fecha_f',
+                'detalle_asignacions.CapRecursos',
+                'detalle_asignacions.deleted_at'
+                )
+        ->where('detalle_asignacions.deleted_at', '=', null)
+        ->where('detalle_asignacions.UsuarioAsig', '=' ,$request->usuario_asig)
+        ->where('detalle_asignacions.IdE', '=' ,$request->empresa)
+        ->where('tipo_activos.id', '=' ,$request->activo)
+        ->get();
+        $empresas = Empresa::all();
+        $tipo_activos = TipoActivo::all();
+        return view('reportes.principal', compact('empresas','tipo_activos','reportes'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

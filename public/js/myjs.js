@@ -16,6 +16,4 @@ $(document).ready(function() {
         $('#exampleModal').modal('show','static');
     });
  }
-//  $('#myModal').modal({backdrop: 'static', keyboard: false})
-
 
