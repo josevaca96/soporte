@@ -5,11 +5,14 @@
 </div>
 <hr>
 <div class="row pt-4">
-    <p>
-        <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse"
+    <a class="pb-1" href="#" data-bs-toggle="collapse"
             data-bs-target="#multiCollapseExample2" aria-expanded="false"
-            aria-controls="multiCollapseExample2">Asignación Rápida</button>
-    </p>
+            aria-controls="multiCollapseExample2" >>>>> asignación rápida ▼</a>
+    <!-- <p>
+        <button class="btn btn-outline-primary p-0" type="button" data-bs-toggle="collapse"
+            data-bs-target="#multiCollapseExample2" aria-expanded="false"
+            aria-controls="multiCollapseExample2" style="padding:2px !important;" >Asignación Rápida ▼</button>
+    </p> -->
     <div class="row">
         <div class="col">
             <div class="collapse multi-collapse" id="multiCollapseExample2">
