@@ -11,6 +11,7 @@
                             <img src="{{ asset('plantilla/img/barra.png') }}" alt="">
                         </div>
                     </div>
+                    {{$activo}}
                     <p class="text-dark text-center">{{$activo->Codigo}}</p>    
                     <div class="row">    
                         <div class="col-lg-6 col-sm-12">
