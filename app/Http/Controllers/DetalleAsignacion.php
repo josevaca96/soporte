@@ -19,30 +19,30 @@ class DetalleAsignacion extends Controller
     public function index()
     {
         $detalle_asginacions= DB::table('detalle_asignacions')
-        ->join('empresas', 'empresas.id', '=', 'detalle_asignacions.IdE')
-        ->join('oficinas', 'oficinas.id', '=', 'detalle_asignacions.IdO')
-        ->join('departamentos', 'departamentos.id', '=', 'detalle_asignacions.IdD')
-        ->join('activos', 'detalle_asignacions.IdAct', '=', 'activos.id')
-        ->join('tipo_activos', 'activos.IdTAct', '=', 'tipo_activos.id')
-        ->select('activos.Codigo',
-                
-                'detalle_asignacions.IdE',
-                'detalle_asignacions.IdO',
-                'detalle_asignacions.IdD',
-                'detalle_asignacions.IdAct',
-                'tipo_activos.Nombre as activo',
-                'detalle_asignacions.UsuarioAsig',
-                'empresas.Nombre as empresa',
-                'oficinas.Direccion',
-                'departamentos.Nombre as departamento',
-                'detalle_asignacions.fecha_i',
-                'detalle_asignacions.fecha_f',
-                'detalle_asignacions.CapRecursos',
-                'detalle_asignacions.deleted_at'
-                )
-        ->where('detalle_asignacions.deleted_at', '=', null)
-        ->orderBy('IdE' ,'ASC')
-        ->paginate(30);
+            ->join('empresas', 'empresas.id', '=', 'detalle_asignacions.IdE')
+            ->join('oficinas', 'oficinas.id', '=', 'detalle_asignacions.IdO')
+            ->join('departamentos', 'departamentos.id', '=', 'detalle_asignacions.IdD')
+            ->join('activos', 'detalle_asignacions.IdAct', '=', 'activos.id')
+            ->join('tipo_activos', 'activos.IdTAct', '=', 'tipo_activos.id')
+            ->select('activos.Codigo',
+                    
+                    'detalle_asignacions.IdE',
+                    'detalle_asignacions.IdO',
+                    'detalle_asignacions.IdD',
+                    'detalle_asignacions.IdAct',
+                    'tipo_activos.Nombre as activo',
+                    'detalle_asignacions.UsuarioAsig',
+                    'empresas.Nombre as empresa',
+                    'oficinas.Direccion',
+                    'departamentos.Nombre as departamento',
+                    'detalle_asignacions.fecha_i',
+                    'detalle_asignacions.fecha_f',
+                    'detalle_asignacions.CapRecursos',
+                    'detalle_asignacions.deleted_at'
+                    )
+            ->where('detalle_asignacions.deleted_at', '=', null)
+            ->orderBy('IdE' ,'ASC')
+            ->paginate(30);
         
         return view('DetalleAsignacion.index' , compact('detalle_asginacions'));
     }
@@ -94,8 +94,7 @@ class DetalleAsignacion extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($IdE,$IdO,$IdD,$IdAct)
-    {
-        
+    { 
         $detalle= DB::table('detalle_asignacions')
                 ->join('empresas', 'empresas.id', '=', 'detalle_asignacions.IdE')
                 ->join('oficinas', 'oficinas.id', '=', 'detalle_asignacions.IdO')
@@ -160,7 +159,7 @@ class DetalleAsignacion extends Controller
             'IdO' => 'required',
             'IdD' => 'required',
             'IdAct' => 'required',
-            'fecha_i' => 'required',
+            'fecha_i' => 'required'
             ],
             [
             'IdE.required' => 'El Campo Empresa es requerido',
@@ -170,21 +169,20 @@ class DetalleAsignacion extends Controller
             'fecha_i.required' => 'El Campo Fecha inicial es requerido',
         ])->validate();
         $obj_asig = DB::table('detalle_asignacions')
-        ->where('IdE', $request->ide2)
-        ->where('IdO', $request->ido2)
-        ->where('IdD', $request->idd2)
-        ->where('IdAct', $request->idact2)
+            ->where('IdE', $request->ide2)
+            ->where('IdO', $request->ido2)
+            ->where('IdD', $request->idd2)
+            ->where('IdAct', $request->idact2)
 
-        ->update(['IdE' => $request->IdE,
-                'IdO' => $request->IdO,
-                'IdD' => $request->IdD,
-                'IdAct' => $request->IdAct,
-                'fecha_i' => $request->fecha_i,
-                'fecha_f' => $request->fecha_f,
-                'UsuarioAsig' => $request->UsuarioAsig,
-                'CapRecursos' => $request->CapRecursos]);
-       
-        // $obj_asig->update($request->all());
+            ->update(['IdE' => $request->IdE,
+                    'IdO' => $request->IdO,
+                    'IdD' => $request->IdD,
+                    'IdAct' => $request->IdAct,
+                    'fecha_i' => $request->fecha_i,
+                    'fecha_f' => $request->fecha_f,
+                    'UsuarioAsig' => $request->UsuarioAsig,
+                    'CapRecursos' => $request->CapRecursos]);
+        
         return redirect()->route('asignaciones.index')
         ->with('info','Actualizado con éxito');
     }

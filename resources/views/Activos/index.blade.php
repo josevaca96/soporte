@@ -14,7 +14,7 @@
                     Crear
                 </a>
                 <a href="{{route('busqueda_rapida')}}" class="btn btn-sm btn-primary">
-                    Reporte
+                    Busqueda Rápida de Activos
                 </a>
             </div>
         </div>
@@ -36,7 +36,7 @@
                  @foreach($activos as $activo)
                  <tr>
                      <td>{{$activo->Codigo}}</td>
-                     <td>{{$activo->tipo_activo->Nombre}}</td>
+                     <td>{{$activo->Nombre}}</td>
                      <td>{{$activo->Marca}}</td>
                      <td>{{$activo->Modelo}}</td>
                      <td>{{$activo->NroSerial}}</td>

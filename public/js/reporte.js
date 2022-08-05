@@ -10,7 +10,9 @@ function verificar(){
     var input_user = document.getElementById('tags');
     if(checkbox){
         input_user.style.display = 'none';
-        // input_user.disabled = true;
+        input_user.value=null;            
+        input_user.disabled = true;
+
     }else{
         input_user.style.display = 'block';
     }

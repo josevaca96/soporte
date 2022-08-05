@@ -20,22 +20,24 @@ class ActivosController extends Controller
      */
     public function index()
     {
-                 
-        $activos = Activo::orderBy('id' ,'DESC')->paginate(50);        
+        $activos = DB::table('activos')
+        ->join('tipo_activos', 'tipo_activos.id', '=', 'activos.IdTAct')
+        ->select('activos.*', 'tipo_activos.Nombre')
+        ->where('activos.deleted_at', '=', null)
+        ->orderBy('id' ,'ASC')
+        ->paginate(30);    
+        // $activos = Activo::orderBy('id' ,'DESC')->paginate(50);        
         return view('activos.index' , compact('activos'));
     }
-    public function report_act()
-    {      
+    public function report_act(){      
         $activos = Activo::orderBy('id' ,'DESC')->get();
         return view('activos.reporte' , compact('activos'));
     }
-    public function report_filter()
-    {      
+    public function report_filter(){      
         $activos = Activo::orderBy('id' ,'DESC')->paginate(50);
         return view('activos.reporteall' , compact('activos'));
     }
-    public function busqueda()
-    {   
+    public function busqueda(){   
         $activos =DB::table('activos')
         ->join('tipo_activos', 'activos.IdTAct', '=', 'tipo_activos.id')
         ->select('activos.*',
@@ -50,12 +52,7 @@ class ActivosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        // $objActivo= new Activo;
-        // $codigo=$objActivo->obtener_codigo();
-        // $tipo_activos = TipoActivo::all()->pluck('Nombre','id');
-        // return view('activos.create',compact('codigo','tipo_activos'));
+    public function create(){
         return view('activos.create');
     }
 
@@ -65,8 +62,7 @@ class ActivosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function validar_activo($activo)
-    { 
+    public function validar_activo($activo){ 
         if(
             Validator::make($activo->toArray(), [
                 'Codigo' => 'required|unique:activos',
@@ -85,8 +81,7 @@ class ActivosController extends Controller
             return false;
         }
     }      
-    public function store(Request $request)
-    {        
+    public function store(Request $request){        
         if($request->IdE=='' && $request->IdO=='' && $request->IdD=='' && $request->UsuarioAsig==''){
             if($this->validar_activo($request))
             {
@@ -138,8 +133,7 @@ class ActivosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Activo $activo)
-    {
+    public function show(Activo $activo){
         
         return view('activos.show', compact('activo'));
     }
@@ -150,13 +144,10 @@ class ActivosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Activo $activo)
-    {
+    public function edit(Activo $activo){
         $tipo_activos = TipoActivo::all()->pluck('Nombre','id');
         return view('activos.edit', compact('activo','tipo_activos'));
     }
-    
-    
     /**
      * Update the specified resource in storage.
      *
@@ -164,8 +155,7 @@ class ActivosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Activo $activo)
-    {
+    public function update(Request $request,Activo $activo){
           $activo->update($request->all());
          return redirect()->route('activos.index')
              ->with('info','Actualizado con éxito');
@@ -177,8 +167,7 @@ class ActivosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         
         $activo =Activo::find($id);
         $activo->delete();

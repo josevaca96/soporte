@@ -11,5 +11,6 @@ Route::get('busqueda_rapida' , 'ActivosController@busqueda')->name('busqueda_rap
 Route::get('reporte-principal' , 'ReporteController@reporte_principal')->name('reporte-principal.index');
 
 Route::get('reporteg' , 'ReporteController@traer_usuario_asig')->name('reporteg');
-Route::get('mostrar_reporte' , 'ReporteController@mostrar_reporte')->name('mostrar_reporte.index');
+// Route::get('mostrar_reporte' , 'ReporteController@mostrar_reporte')->name('mostrar_reporte.index');
+Route::get('mostrar_reporte' , 'PdfController@PDF')->name('mostrar_reporte.index');
 });

@@ -33,51 +33,51 @@
 </head>
 
 <body>
-
-    <div class="container pt-5">
-        <h1>Reportes</h1>
-        <div class="row pt-5">
-            <form class="d-flex" action="{{route('mostrar_reporte.index')}}" method="get">
-                <div class="col-3 p-2">
-                    <label for="tags">Usuario asignado: </label>
-                    <!-- <form action=""> -->
-                    <input id="tags" name="usuario_asig" class="form-control" placeholder="Escriba un usuario..">
-                    <label><input type="checkbox" id="check_all" onclick="verificar()"> Todos Los Usuarios</label>
-                    <!-- </form> -->
-
-                </div>
-                <div class="col-3 p-2">
-                    <label for="tags">Empresa: </label>
-                    <select name="empresa" id="" class="form-control">
-                        <option value="">todas las empresas</option>
-                        @foreach($empresas as $empresa)
-                        <option value="{{$empresa->id}}">{{$empresa->Nombre}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-2 p-2">
-                    <label for="tags">Activo: </label>
-                    <select name="activo" id="" class="form-control">
-                        <option value="">Todos los activos</option>
-                        @foreach($tipo_activos as $tipo_activo)
-                        <option value="{{$tipo_activo->id}}">{{$tipo_activo->Nombre}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <!-- <div class="col-3">
-                <label for="tags">Fecha De Asignación: </label>
-                {{Form::date('fecha_f',null,['class' => 'form-control'])}}
+    <div class="container">
+        <div class=" card mt-5 pt-5">
+            <h1>Reportes</h1>
+            <div class="row pt-5 p-3">
+                <form class="d-flex" action="{{route('mostrar_reporte.index')}}" method="get">
+                    <div class="col-3 p-2">
+                        <label for="tags">Usuario asignado: </label>
+                        <input id="tags" name="usuario_asig" class="form-control" placeholder="Escriba un usuario..">
+                    </div>
+                    <div class="col-3 p-2">
+                        <label for="tags">Empresa: </label>
+                        <select name="empresa" id="" class="form-control">
+                            <option value="">todas las empresas</option>
+                            @foreach($empresas as $empresa)
+                            <option value="{{$empresa->id}}">{{$empresa->Nombre}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-2 p-2">
+                        <label for="tags">Activo: </label>
+                        <select name="activo" id="" class="form-control">
+                            <option value="">Todos los activos</option>
+                            @foreach($tipo_activos as $tipo_activo)
+                            <option value="{{$tipo_activo->id}}">{{$tipo_activo->Nombre}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <!-- <div class="col-3">
+                     <label for="tags">Fecha De Asignación: </label>
+                    {{Form::date('fecha_f',null,['class' => 'form-control'])}}
                 </div> -->
-                <div class="col-1 " style="padding-top:35px;" >
-                    <button class="btn btn-sm btn-primary" type="submit">Buscar</button>
-                </div>
-            </form>
-        </div>
-        
-        <br>
-
-        <div class="p-2 card">
-            <p class="text-secondary">Resultado del Filtro</p>
+                    <div class="col-1 " style="padding-top:35px;">
+                        <button class="btn btn-sm btn-primary" type="submit">Buscar</button>
+                    </div>
+                </form>
+            </div>
+            <br>
+            <!-- <div class="p-2 card">
+            <div class="d-flex flex-row">
+                <p class="text-secondary mb-0">Resultado del Filtro: {{$cant_item}} item(s) </p>
+              @if(isset($request2))  
+                <a href="{{route('pdf_asignaciones',[$request2->usuario_asig,$request2->empresa,$request2->activo])}}" class="btn btn-sm btn-success p-1">DESCARGAR PDF</a>
+             @endif
+            </div>
+            
             <div class="table-responsive-lg">
                 <table id="activos" class="table table-striped table-hover ">
                     <thead>
@@ -89,18 +89,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($reportes as $reporte)
-                             <tr>
-                                 <td>{{$reporte->Codigo}}</td>
-                                 <td>{{$reporte->activo}}</td>
-                                 <td>{{$reporte->UsuarioAsig}}</td>
-                                 <td>{{$reporte->empresa}}</td>
-                             </tr>
-                             @endforeach
+                        @isset($reportes)
+                        @foreach($reportes as $reporte)
+                        <tr>
+                            <td>{{$reporte->Codigo}}</td>
+                            <td>{{$reporte->activo}}</td>
+                            <td>{{$reporte->UsuarioAsig}}</td>
+                            <td>{{$reporte->empresa}}</td>
+                        </tr>
+                        @endforeach
+                        @endisset
                     </tbody>
 
                 </table>
             </div>
+        </div> -->
         </div>
     </div>
 
