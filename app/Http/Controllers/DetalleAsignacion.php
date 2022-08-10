@@ -7,6 +7,7 @@ use App\Asignacion;
 use App\Oficina;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Validation\Rule;
 
 
 class DetalleAsignacion extends Controller
@@ -16,8 +17,7 @@ class DetalleAsignacion extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         $detalle_asginacions= DB::table('detalle_asignacions')
             ->join('empresas', 'empresas.id', '=', 'detalle_asignacions.IdE')
             ->join('oficinas', 'oficinas.id', '=', 'detalle_asignacions.IdO')
@@ -52,8 +52,7 @@ class DetalleAsignacion extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(){
         return view('DetalleAsignacion.create');
     }
 
@@ -63,8 +62,13 @@ class DetalleAsignacion extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public $G_IdE,$G_IdO,$G_IdD,$G_IdAct;
+    public function store(Request $request){
+        // dd($request->IdE);
+        $this->G_IdE =$request->IdE;
+        $this->G_IdO =$request->IdO;
+        $this->G_IdD =$request->IdD;
+        $this->G_IdAct =$request->IdAct;
         //validando los campos del formulario
         Validator::make($request->all(), [
             'IdE'   => 'required',
@@ -73,9 +77,16 @@ class DetalleAsignacion extends Controller
             'IdAct' => 'required',
             'fecha_i' => 'required',
             'CapRecursos' => 'required',
-            ],
+            'IdE'   => Rule::unique('detalle_asignacions')->where(function ($query){
+                return $query->where('IdE',$this->G_IdE)
+                             ->where('IdO',$this->G_IdO)
+                             ->where('IdD',$this->G_IdD)
+                             ->where('IdAct',$this->G_IdAct);
+            })    
+        ],
         [
             'IdE.required' => 'El Campo Empresa es requerido',
+            'IdE.unique' => 'Verifique los Datos',
             'IdO.required' => 'El Campo Oficina es requerido',
             'IdD.required' => 'El Campo Departamento es requerido',
             'IdAct.required' => 'El Campo Activo es requerido',
