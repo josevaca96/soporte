@@ -14,6 +14,7 @@ class MantenimientoController extends Controller
     public function index()
     {
         return view('Mantenimientos.index');
+
     }
 
     /**

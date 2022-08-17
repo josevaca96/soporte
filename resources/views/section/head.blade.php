@@ -10,6 +10,7 @@
     <link href="{{asset('plantilla/lib/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{asset('plantilla/lib/animate-css/animate.min.css')}}" rel="stylesheet">
     <link href="{{asset('plantilla/css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
     <link href="{{ asset('plantilla/img/logo2.png') }}" rel="shortcut icon">
     <link rel="stylesheet" href="{{ asset('css/frm-activos.css') }}">
     @livewireStyles
