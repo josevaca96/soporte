@@ -2,9 +2,10 @@
  @section('content')
      <div class="container-fluid shadow-sm p-3 mb-5 bg-white rounded">
          <h1 class="text-info mb-0"><strong>Mantenimientos</strong></h1>
-         <p class="px-2 text-info">Próximos Mantenimientos</p>
+         <p class="px-2 text-info mb-0">Próximos Mantenimientos</p>
+         <a class="text-info px-2" href="{{route('mantenimientos.create') }}">Crear |</a>
          <div class="row">
-             <div class="col-md-12">
+             <div class="col-md-12 mt-3">
                  <div class="row">
                      <div class="col-2">
                          <div class="card">

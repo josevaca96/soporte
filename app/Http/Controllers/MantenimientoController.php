@@ -24,7 +24,7 @@ class MantenimientoController extends Controller
      */
     public function create()
     {
-        //
+        return view('Mantenimientos.create');
     }
 
     /**

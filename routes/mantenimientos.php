@@ -14,7 +14,7 @@ Route::get('mantenimientos' , 'MantenimientoController@index')->name('mantenimie
    ->middleware('can:mantenimientos.index');
 
 Route::get('mantenimientos/create' , 'MantenimientoController@create')->name('mantenimientos.create')
-   ->middleware('can:mantenimientos.create');
+    ->middleware('can:mantenimientos.create');
 
 Route::put('mantenimientos/{mantenimiento}' , 'MantenimientoController@update')->name('mantenimientos.update')
    ->middleware('can:mantenimientos.edit');
