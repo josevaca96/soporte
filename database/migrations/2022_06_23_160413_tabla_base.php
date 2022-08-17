@@ -37,15 +37,7 @@ class TablaBase extends Migration
             $table->text('Descripcion')->nullable();
             $table->softDeletes();
         });
-        Schema::create('mantenimientos', function (Blueprint $table) {
-            $table->bigInteger('id')->autoIncrement();
-            $table->text('IdActivo')->nullable();
-            $table->date('FechaMant');
-            $table->date('FechaMantProxi')->nullable();
-            $table->text('Descripcion')->nullable();
-            $table->boolean('Test')->default(true);
-            $table->softDeletes();
-        });
+
         Schema::create('activos', function (Blueprint $table) {
             $table->bigInteger('id')->autoIncrement();
             $table->string ('Codigo',60);
@@ -57,6 +49,16 @@ class TablaBase extends Migration
             $table->text('Observaciones')->nullable();
             $table->foreign('IdTAct')->references('id')->on('tipo_activos');
             $table->softDeletes();
+        });
+        Schema::create('mantenimientos', function (Blueprint $table) {
+            $table->bigInteger('id')->autoIncrement();
+            $table->bigInteger('IdActivo');
+            $table->date('FechaMant');
+            $table->date('FechaMantProxi')->nullable();
+            $table->text('Descripcion')->nullable();
+            $table->boolean('Test')->default(true);
+            $table->softDeletes();
+            $table->foreign('IdActivo')->references('id')->on('activos');
         });
         Schema::create('detalle_asignacions', function (Blueprint $table) {
             // $table->bigInteger('id')->unique();
