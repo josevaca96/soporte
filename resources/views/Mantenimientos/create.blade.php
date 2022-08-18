@@ -3,13 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="card shadow-lg p-3 mb-5 bg-body rounded">
                 <div class="px-5">
                 @include('activos.error')
-                       {!! Form::open( ['route' => 'mantenimientos.store']) !!}
-                            @include('Mantenimientos.partials.form')
-                        {!! Form::close() !!}
+                <livewire:mantenimientos.mantenimientos-component />
                 </div>
             </div>
         </div>

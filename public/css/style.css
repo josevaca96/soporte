@@ -133,3 +133,20 @@ html,
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+.logo_guide{
+    width: 25px;
+    height:25px;
+
+}
+#heading{
+    padding-bottom: 10px;
+}
+#heading div{
+    float:left;
+}
+.itm > div{
+    padding-top: 8px;
+}
+
+
+
